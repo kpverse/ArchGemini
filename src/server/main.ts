@@ -1,17 +1,25 @@
 import express from "express";
-import FolderTree from "../routes/folder-tree";
-import RegisterPath from "../routes/register-path";
+import { FolderTree } from "../routes/folder-tree";
+import { RegisterPath } from "../routes/register-path";
+import { PORT } from "./port";
+import { getIPv4 } from "./ip-address/main";
 
-const Server = express();
+const ExpressApp = express();
 
-Server.get("/service-availability", (req, res) => {
+ExpressApp.get("/service-availability", (req, res) => {
     res.send({
         ServiceAvailable: true,
     });
 });
 
-Server.use(FolderTree.path, FolderTree.router);
+ExpressApp.use(FolderTree.path, FolderTree.router);
 
-Server.use(RegisterPath.path, RegisterPath.router);
+ExpressApp.use(RegisterPath.path, RegisterPath.router);
 
-export default Server;
+export const Server = ExpressApp.listen(PORT, () => {
+    console.log(`
+Server is running at http://${getIPv4()}:${PORT}
+
+Press control/command + c to close the server.
+`);
+});

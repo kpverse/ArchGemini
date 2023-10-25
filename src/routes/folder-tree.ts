@@ -1,9 +1,9 @@
 import { Router } from "express";
-import port from "../server/port";
-import { getSharedPath } from "../variables/sharedFolder";
+import { getSharedPath } from "../server/shared-folder";
+import { PORT } from "../server/port";
 import { join } from "path";
 
-let FolderTree = {
+export let FolderTree = {
     path: "/folder-tree",
     router: Router(),
 };
@@ -11,7 +11,7 @@ let FolderTree = {
 FolderTree.router.get("/", (req, res) => {
     let rootPath = getSharedPath(),
         path = new URL(
-            `http://localhost:${port}${FolderTree.path}${req.url}`
+            `http://localhost:${PORT}${FolderTree.path}${req.url}`
         ).searchParams.get("path");
 
     if (rootPath === undefined) {
@@ -21,5 +21,3 @@ FolderTree.router.get("/", (req, res) => {
         return;
     } else res.send(join(rootPath, path ? path : ""));
 });
-
-export default FolderTree;
