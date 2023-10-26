@@ -1,9 +1,9 @@
 import { platform } from "process";
-import { MacOSIPv4 } from "./MacOSIPv4";
-import { WindowsIPv4 } from "./WindowsIPv4";
-import { LinuxIPv4 } from "./LinuxIPv4";
+import { MacOSIPv4 } from "./os/macos";
+import { WindowsIPv4 } from "./os/windows";
+import { LinuxIPv4 } from "./os/linux";
 
-let IPv4: string | undefined;
+export let IPv4: string = getIPv4();
 
 type Options = { forceRefresh?: boolean };
 
@@ -17,5 +17,6 @@ export function getIPv4(Options?: Options) {
         else if (platform === "win32") IPv4 = WindowsIPv4();
         else IPv4 = LinuxIPv4();
     }
+
     return IPv4;
 }

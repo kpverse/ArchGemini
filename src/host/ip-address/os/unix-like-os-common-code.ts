@@ -1,0 +1,16 @@
+import { networkInterfaces } from "os";
+
+export function UnixLikeOsCommonCode(OS: "macOS" | "Linux") {
+    let interfaces = networkInterfaces()[OS === "macOS" ? "en0" : "wlo1"] as
+        | { address: string; family: string }[]
+        | undefined;
+
+    if (!interfaces) {
+        console.error("ERROR: Device is not connected to internet.");
+        process.exit(1);
+    }
+
+    let { address } = interfaces.filter(({ family }) => family === "IPv4")[0];
+
+    return address;
+}

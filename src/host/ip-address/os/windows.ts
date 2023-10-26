@@ -1,7 +1,7 @@
 import { networkInterfaces } from "os";
 import { platform } from "process";
 
-export function LinuxIPv4() {
+export function WindowsIPv4() {
     console.log(`Platform is "${platform}".`);
 
     console.log(JSON.stringify(networkInterfaces()));

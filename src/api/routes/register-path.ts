@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { PORT } from "../server/port";
-import { setSharedPath } from "../server/shared-folder";
-import { getIPv4 } from "../server/ip-address/main";
+import { PORT } from "../../server/port";
+import { IPv4 } from "../../host/ip-address/main";
+import { setSharedPath } from "../../host/shared-folder";
 
-export let RegisterPath = {
+export const RegisterPath = {
     path: "/register-path",
     router: Router(),
 };
@@ -13,9 +13,7 @@ RegisterPath.router.get("/", (req, res) => {
     let { remoteAddress } = req.socket;
     if (
         remoteAddress &&
-        !["::1", "::ffff:127.0.0.1", `::ffff:${getIPv4()}`].includes(
-            remoteAddress
-        )
+        !["::1", "::ffff:127.0.0.1", `::ffff:${IPv4}`].includes(remoteAddress)
     ) {
         res.send({
             ERROR: "You don't have access to change.",
@@ -35,6 +33,7 @@ RegisterPath.router.get("/", (req, res) => {
         return;
     }
 
+    // Check if the path exists or not.
     setSharedPath(path);
 
     res.send({
