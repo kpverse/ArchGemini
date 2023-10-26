@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { FolderTree } from "./routes/folder-tree";
 import { RegisterPath } from "./routes/register-path";
+import { routesPrefix } from "./routes-prefix";
 
 export const API = {
-    path: "/api/project-z",
+    path: routesPrefix,
     router: Router(),
 };
 

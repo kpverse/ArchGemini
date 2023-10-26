@@ -2,6 +2,8 @@ import { Router } from "express";
 import { sharedPath } from "../../host/shared-folder";
 import { join } from "path";
 import { PORT } from "../../server/port";
+import { routesPrefix } from "../routes-prefix";
+import { IPv4 } from "../../host/ip-address/main";
 
 export const FolderTree = {
     path: "/folder-tree",
@@ -16,9 +18,17 @@ FolderTree.router.get("/", (req, res) => {
         return;
     }
 
-    let path = new URL(
-        `http://localhost:${PORT}${FolderTree.path}${req.url}`
-    ).searchParams.get("path");
+    let path =
+        new URL(
+            `http://${IPv4}:${PORT}${join(
+                routesPrefix,
+                FolderTree.path,
+                req.url
+            )}`
+        ).searchParams.get("path") || "/";
 
-    res.send(join(sharedPath, path ? path : ""));
+    res.send(
+        // Temporarily sending full path as return value.
+        join(sharedPath, path)
+    );
 });
