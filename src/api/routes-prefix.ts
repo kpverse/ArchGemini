@@ -1,1 +1,1 @@
-export const routesPrefix = "/api/project-z";
+export const routesPrefix = "/project-z/api";
