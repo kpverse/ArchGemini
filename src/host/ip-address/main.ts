@@ -3,7 +3,7 @@ import { MacOSIPv4 } from "./os/macos";
 import { WindowsIPv4 } from "./os/windows";
 import { LinuxIPv4 } from "./os/linux";
 
-export let IPv4: string = getIPv4();
+let IPv4: string | undefined = undefined;
 
 type Options = { forceRefresh?: boolean };
 

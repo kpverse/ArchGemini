@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getPortValue } from "../../host/port";
-import { IPv4 } from "../../host/ip-address/main";
+import { getIPv4 } from "../../host/ip-address/main";
 import { setSharedPath } from "../../host/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
 
@@ -15,7 +15,7 @@ RegisterPath.router.get("/", (req, res) => {
         let { remoteAddress } = req.socket;
         if (
             remoteAddress &&
-            !["::1", "::ffff:127.0.0.1", `::ffff:${IPv4}`].includes(
+            !["::1", "::ffff:127.0.0.1", `::ffff:${getIPv4()}`].includes(
                 remoteAddress
             )
         ) {

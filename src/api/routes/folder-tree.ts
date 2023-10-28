@@ -3,7 +3,6 @@ import { sharedPath } from "../../host/shared-folder";
 import { join } from "path";
 import { getPortValue } from "../../host/port";
 import { routesPrefix } from "../routes-prefix";
-import { IPv4 } from "../../host/ip-address/main";
 import { getPathData } from "../../helpers/file-system/path-data";
 import { isDir } from "../../helpers/path-type/is-dir";
 
@@ -23,7 +22,7 @@ FolderTree.router.get("/", (req, res) => {
 
         let path =
             new URL(
-                `http://${IPv4}:${await getPortValue()}${join(
+                `http://localhost:${await getPortValue()}${join(
                     routesPrefix,
                     FolderTree.path,
                     req.url

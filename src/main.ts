@@ -1,6 +1,6 @@
 import express from "express";
 import { getPortValue } from "./host/port";
-import { IPv4 } from "./host/ip-address/main";
+import { getIPv4 } from "./host/ip-address/main";
 import { API } from "./api/main";
 import { platform } from "process";
 
@@ -20,7 +20,7 @@ ExpressApp.use(API.path, API.router);
 
     ExpressApp.listen(port, () => {
         console.log(`
-Server is running at http://${IPv4}:${port}
+Server is running at http://${getIPv4()}:${port}
 
 Press ${platform === "darwin" ? "command" : "control"} + c to close this app.`);
     });
