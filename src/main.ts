@@ -1,6 +1,6 @@
 import express from "express";
-import { getPortValue } from "./host/port";
-import { getIPv4 } from "./host/ip-address/main";
+import { getPortValue } from "./sender/port";
+import { getIPv4 } from "./sender/ip-address/main";
 import { API } from "./api/main";
 import { platform } from "process";
 

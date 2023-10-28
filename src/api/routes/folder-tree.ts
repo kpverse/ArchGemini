@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { sharedPath } from "../../host/shared-folder";
+import { sharedPath } from "../../sender/shared-folder";
 import { join } from "path";
-import { getPortValue } from "../../host/port";
+import { getPortValue } from "../../sender/port";
 import { routesPrefix } from "../routes-prefix";
 import { getPathData } from "../../helpers/file-system/path-data";
 import { isDir } from "../../helpers/path-type/is-dir";

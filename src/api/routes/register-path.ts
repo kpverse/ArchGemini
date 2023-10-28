@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { getPortValue } from "../../host/port";
-import { getIPv4 } from "../../host/ip-address/main";
-import { setSharedPath } from "../../host/shared-folder";
+import { getPortValue } from "../../sender/port";
+import { getIPv4 } from "../../sender/ip-address/main";
+import { setSharedPath } from "../../sender/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
 
 export const RegisterPath = {
@@ -27,7 +27,7 @@ RegisterPath.router.get("/", (req, res) => {
 
         // If the request is coming from receiver, then and then the following code will run.
         let path = new URL(
-            `http://localhost:${await getPortValue()}${RegisterPath.path}${
+            `http://localsender:${await getPortValue()}${RegisterPath.path}${
                 req.url
             }`
         ).searchParams.get("path");
