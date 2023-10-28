@@ -5,7 +5,7 @@ export default [
             file: "./bin/index.esm.js",
             format: "esm",
         },
-        external: ["express", "os", "process", "path", "detect-port"],
+        external: ["express", "os", "process", "path", "detect-port", "fs"],
     },
 
     //     ...["esm", "cjs"].map((type) => {

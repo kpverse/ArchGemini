@@ -6,12 +6,12 @@ import { platform } from "process";
 
 const ExpressApp = express();
 
-// An API to check if service is available or not.
-ExpressApp.get("/service-availability", (req, res) => {
-    res.send({
-        ServiceAvailable: true,
-    });
-});
+// // An API to check if service is available or not.
+// ExpressApp.get("/service-availability", (req, res) => {
+//     res.send({
+//         ServiceAvailable: true,
+//     });
+// });
 
 ExpressApp.use(API.path, API.router);
 

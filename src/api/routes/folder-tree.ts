@@ -4,6 +4,8 @@ import { join } from "path";
 import { getPortValue } from "../../host/port";
 import { routesPrefix } from "../routes-prefix";
 import { IPv4 } from "../../host/ip-address/main";
+import { getPathData } from "../../helpers/file-system/path-data";
+import { isDir } from "../../helpers/path-type/is-dir";
 
 export const FolderTree = {
     path: "/folder-tree",
@@ -14,7 +16,7 @@ FolderTree.router.get("/", (req, res) => {
     (async () => {
         if (sharedPath === undefined) {
             res.send({
-                ERROR: "There are no shared paths.",
+                status: "THERE_ARE_NO_SHARED_PATHS",
             });
             return;
         }
@@ -28,9 +30,16 @@ FolderTree.router.get("/", (req, res) => {
                 )}`
             ).searchParams.get("path") || "/";
 
-        res.send(
-            // Temporarily sending full path as return value.
-            join(sharedPath, path)
-        );
+        let finalPath = join(sharedPath, path),
+            pathStatus = isDir(finalPath);
+
+        if (pathStatus === true) {
+            res.send(getPathData(finalPath));
+            return;
+        }
+
+        res.send({
+            status: "NOTHING_TO_SHOW",
+        });
     })();
 });

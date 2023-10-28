@@ -1,11 +1,12 @@
 {
-  "name": "project-z",
+  "name": "archgemini",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "nodemon ./bin/index.cjs.js",
+    "start": "node ./bin/index.cjs.js",
+    "nodemon-start": "node ./bin/index.cjs.js",
     "build": "node build.js"
   },
   "keywords": [],

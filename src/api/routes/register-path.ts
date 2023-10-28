@@ -2,6 +2,7 @@ import { Router } from "express";
 import { getPortValue } from "../../host/port";
 import { IPv4 } from "../../host/ip-address/main";
 import { setSharedPath } from "../../host/shared-folder";
+import { isDir } from "../../helpers/path-type/is-dir";
 
 export const RegisterPath = {
     path: "/register-path",
@@ -19,7 +20,7 @@ RegisterPath.router.get("/", (req, res) => {
             )
         ) {
             res.send({
-                ERROR: "You don't have access to change.",
+                status: "BETTER_LUCK_NEXT_TIME",
             });
             return;
         }
@@ -33,16 +34,31 @@ RegisterPath.router.get("/", (req, res) => {
 
         if (path === null) {
             res.send({
-                ERROR: `Can't share path.`,
+                status: "PATH_IS_NOT_GIVEN",
             });
             return;
         }
 
         // Check if the path exists or not.
-        setSharedPath(path);
+        let pathStatus = isDir(path);
+        if (pathStatus === true) {
+            setSharedPath(path);
+
+            res.send({
+                status: "PATH_SHARED",
+            });
+            return;
+        }
+
+        if (pathStatus === "PATH_DO_NOT_EXIST") {
+            res.send({
+                status: pathStatus,
+            });
+            return;
+        }
 
         res.send({
-            success: "Path shared.",
+            status: "NOT_A_DIRECTORY",
         });
     })();
 });
