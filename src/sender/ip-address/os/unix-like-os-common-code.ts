@@ -1,23 +1,15 @@
-import { networkInterfaces } from "os";
+import { getIPv4FromNetworkInterface } from "../../../helpers/ip-from-interface";
+import { getNetworkInterfaces } from "../../../helpers/network-interfaces";
 
 export function UnixLikeOsCommonCode(OS: "macOS" | "Linux") {
-    let interfaces = networkInterfaces()[OS === "macOS" ? "en0" : "wlo1"] as
+    let _interface = getNetworkInterfaces()[OS === "macOS" ? "en0" : "wlo1"] as
         | { address: string; family: string; internal: boolean }[]
         | undefined;
 
-    if (!interfaces) {
-        console.error("ERROR: Device is not connected to internet.");
+    if (!_interface) {
+        console.log("ERROR: You are not connected to the internet.");
         process.exit(1);
     }
 
-    try {
-        let { address } = interfaces.filter(
-            ({ family, internal }) => !internal && family === "IPv4"
-        )[0];
-
-        return address || "127.0.0.1";
-    } catch (error) {
-        console.log(error);
-        return "127.0.0.1";
-    }
+    return getIPv4FromNetworkInterface(_interface);
 }

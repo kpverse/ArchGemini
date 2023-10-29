@@ -6,21 +6,15 @@ import { platform } from "process";
 
 const ExpressApp = express();
 
-// // An API to check if service is available or not.
-// ExpressApp.get("/service-availability", (req, res) => {
-//     res.send({
-//         ServiceAvailable: true,
-//     });
-// });
-
 ExpressApp.use(API.path, API.router);
 
 (async () => {
     let port = await getPortValue();
+    let ip = await getIPv4();
 
     ExpressApp.listen(port, () => {
         console.log(`
-Server is running at http://${getIPv4()}:${port}
+Server is running at http://${ip}:${port}
 
 Press ${platform === "darwin" ? "command" : "control"} + c to close this app.`);
     });

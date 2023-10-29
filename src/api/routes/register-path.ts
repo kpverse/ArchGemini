@@ -15,7 +15,7 @@ RegisterPath.router.get("/", (req, res) => {
         let { remoteAddress } = req.socket;
         if (
             remoteAddress &&
-            !["::1", "::ffff:127.0.0.1", `::ffff:${getIPv4()}`].includes(
+            !["::1", "::ffff:127.0.0.1", `::ffff:${await getIPv4()}`].includes(
                 remoteAddress
             )
         ) {
@@ -27,7 +27,7 @@ RegisterPath.router.get("/", (req, res) => {
 
         // If the request is coming from receiver, then and then the following code will run.
         let path = new URL(
-            `http://localsender:${await getPortValue()}${RegisterPath.path}${
+            `http://localhost:${await getPortValue()}${RegisterPath.path}${
                 req.url
             }`
         ).searchParams.get("path");
