@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { sharedPath } from "../../sender/shared-folder";
-import { join } from "path";
+import { basename, join } from "path";
 import { getPortValue } from "../../sender/port";
 import { routesPrefix } from "../routes-prefix";
 import { getPathData } from "../../helpers/file-system/path-data";
@@ -32,8 +32,13 @@ FolderTree.router.get("/", (req, res) => {
         let finalPath = join(sharedPath, path),
             pathStatus = isDir(finalPath);
 
+        let pathList = join(basename(sharedPath), path);
+
+        if (pathList.charAt(pathList.length - 1) === "/")
+            pathList = pathList.substring(0, pathList.length - 1);
+
         if (pathStatus === true) {
-            res.send(getPathData(finalPath));
+            res.send(getPathData(finalPath, pathList.split("/")));
             return;
         }
 

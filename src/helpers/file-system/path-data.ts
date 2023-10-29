@@ -3,12 +3,15 @@ import { folderInfoType, getFolderInfo } from "./folder-info";
 import { join } from "path";
 import { fileInfoType, getFileInfo } from "./file-info";
 
-export function getPathData(path: PathLike) {
+export function getPathData(path: PathLike, pathList?: string[]) {
     try {
         let pathObj: {
             fld?: folderInfoType[];
             fls?: fileInfoType[];
-        } = {};
+            pls: string[];
+        } = {
+            pls: pathList ? pathList : [],
+        };
 
         let content = readdirSync(path);
 

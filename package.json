@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node ./bin/index.cjs.js",
-    "nodemon-start": "node ./bin/index.cjs.js",
+    "test": "nodemon ./bin/index.cjs.js",
     "build": "node build.js"
   },
   "keywords": [],

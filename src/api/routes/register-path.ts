@@ -3,6 +3,7 @@ import { getPortValue } from "../../sender/port";
 import { getIPv4 } from "../../sender/ip-address/main";
 import { setSharedPath } from "../../sender/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
+import { join } from "path";
 
 export const RegisterPath = {
     path: "/register-path",
@@ -42,7 +43,7 @@ RegisterPath.router.get("/", (req, res) => {
         // Check if the path exists or not.
         let pathStatus = isDir(path);
         if (pathStatus === true) {
-            setSharedPath(path);
+            setSharedPath(join(path, "/"));
 
             res.send({
                 status: "PATH_SHARED",

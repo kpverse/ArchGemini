@@ -10,12 +10,12 @@ Enter 1 or 2 only
 
 const attentionMsg = (wifiIP: string, LocalAreaConnectionIP: string) => {
     return `
-ATTENTION REQUIRED: Your device is connected to Wi-Fi, and Hotspot is on as well.
+ATTENTION REQUIRED: Your device is connected to Wi-Fi and Hotspot is on as well.
 
-To continue, the receiver device must be connected to one of the following options:
+To continue, the receiver device must be connected to one of the following networks:
 
-1. The same Wi-Fi network as your device (${wifiIP})
-2. The Hotspot of your device (${LocalAreaConnectionIP})
+1. The same Wi-Fi network as your device (${wifiIP}).
+2. The Hotspot of your device (${LocalAreaConnectionIP}).
 
 Enter 1 or 2
 > `;
