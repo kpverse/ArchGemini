@@ -33,9 +33,11 @@ FolderTree.router.get("/", (req, res) => {
         let finalPath = join(sharedPath, path),
             pathStatus = isDir(finalPath);
 
-        let pathList = join(basename(sharedPath), path).split(platform === 'win32'?`\\`: "/");
+        let pathList = join(basename(sharedPath), path).split(
+            platform === "win32" ? `\\` : "/"
+        );
 
-        pathList = pathList.filter(folder => folder !== '');
+        pathList = pathList.filter((folder) => folder !== "");
 
         if (pathStatus === true) {
             res.send(getPathData(finalPath, pathList));

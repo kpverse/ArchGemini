@@ -2,36 +2,35 @@ import { createInterface } from "readline";
 import { getIPv4FromNetworkInterface } from "../../../helpers/ip-from-interface";
 import { getNetworkInterfaces } from "../../../helpers/network-interfaces";
 
-const warningMsg = () => {
+const warningMsg = (validAnswersString: string) => {
     return `
-Enter 1, 2 or 3 only
+Enter ${validAnswersString}.
 > `;
 };
 
-const attentionMsg = (wifiIP: string, LocalAreaConnectionIP: string, EthernetInterfaceIP: string) => {
+const attentionMsg = (
+    interfaceIps: { type: "e" | "l" | "w"; ip: string }[],
+    validAnswersString: string
+) => {
     return `
 To continue, the receiver device must be connected to one of the following networks:
 
-1. The same Wi-Fi network as your device (${wifiIP}).
-2. The Hotspot of your device (${LocalAreaConnectionIP}).
-3. The Ethernet of your device (${EthernetInterfaceIP}).
+${interfaceIps.map((ipObject, index) => {
+    if (ipObject.type === "w")
+        return `${index + 1}. The same Wi-Fi network as your device (${
+            ipObject.ip
+        }).`;
+    else if (ipObject.type === "l")
+        return `${index + 1}. The Hotspot of your device (${ipObject.ip}).`;
+    else if (ipObject.type === "e")
+        return `${index + 1}. The same Ethernet as your device (${
+            ipObject.ip
+        }).`;
+})}
 
-Enter 1, 2 or 3
+Enter ${validAnswersString}.
 > `;
 };
-
-// const attentionMsg = (wifiIP: string, LocalAreaConnectionIP: string) => {
-//     return `
-// ATTENTION REQUIRED: Your device is connected to Wi-Fi and Hotspot is on as well.
-
-// To continue, the receiver device must be connected to one of the following networks:
-
-// 1. The same Wi-Fi network as your device (${wifiIP}).
-// 2. The Hotspot of your device (${LocalAreaConnectionIP}).
-
-// Enter 1 or 2
-// > `;
-// };
 
 export async function WindowsIPv4() {
     type interfaceType = {
@@ -44,76 +43,96 @@ export async function WindowsIPv4() {
         [_: string]: interfaceType;
     };
 
-    let wifiInterface: interfaceType | undefined = undefined;
-    let LocalAreaConnectionInterface: interfaceType | undefined = undefined;
-    let EthernetInterface: interfaceType | undefined = undefined;
-
     let keys = Object.keys(interfaces);
+
+    let usefulInterfaces:
+        | {
+              type: "e" | "l" | "w";
+              value: interfaceType;
+          }[]
+        | undefined;
+
+    let usefulInterfacesHelper = (type: "e" | "l" | "w", key: string) => {
+        if (!usefulInterfaces)
+            usefulInterfaces = [
+                {
+                    type: type,
+                    value: interfaces[key],
+                },
+            ];
+        else
+            usefulInterfaces.push({
+                type: "w",
+                value: interfaces[key],
+            });
+    };
 
     for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
 
-        if (key === "Wi-Fi") wifiInterface = interfaces[key];
+        if (key === "Wi-Fi") usefulInterfacesHelper("w", key);
         else if (key.startsWith("Local Area Connection* "))
-        LocalAreaConnectionInterface = interfaces[key];
-        else if (key === "Ethernet") EthernetInterface = interfaces[key];
+            usefulInterfacesHelper("l", key);
+        else if (key === "Ethernet") usefulInterfacesHelper("w", key);
 
-        if (
-            wifiInterface !== undefined &&
-            EthernetInterface !== undefined &&
-            LocalAreaConnectionInterface !== undefined
-        )
-            break;
+        if (usefulInterfaces?.length === 3) break;
     }
+    if (usefulInterfaces?.length === 0) {
+        // If no interfaces are found.
 
-    if (
-        wifiInterface !== undefined &&
-        EthernetInterface !== undefined &&
-        LocalAreaConnectionInterface !== undefined
-    ) {
-        let [wifiIP, LocalAreaConnectionIP, EthernetInterfaceIP] = [
-            getIPv4FromNetworkInterface(wifiInterface),
-            getIPv4FromNetworkInterface(LocalAreaConnectionInterface),
-            getIPv4FromNetworkInterface(EthernetInterface),
-        ];
-
-        const readlineInterface = createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
-
-        let answer: string = await new Promise(function (resolve) {
-            readlineInterface.question(
-                attentionMsg(wifiIP, LocalAreaConnectionIP, EthernetInterfaceIP),
-                resolve
-            );
-        });
-
-        while (!["1", "2", '3'].includes(answer))
-            answer = await new Promise(function (resolve) {
-                readlineInterface.question(warningMsg(), resolve);
-            });
-
-        if (answer === "1") return wifiIP;
-        else if (answer === "2") return LocalAreaConnectionIP;
-        else return EthernetInterfaceIP;
-    }
-
-    if (wifiInterface) return getIPv4FromNetworkInterface(wifiInterface);
-    else if (LocalAreaConnectionInterface)
-        return getIPv4FromNetworkInterface(LocalAreaConnectionInterface);
-    else if (EthernetInterface)
-        return getIPv4FromNetworkInterface(EthernetInterface);
-
-    if (
-        wifiInterface === undefined &&
-        EthernetInterface === undefined &&
-        LocalAreaConnectionInterface === undefined
-    ) {
         console.log(
             "ERROR: The connection between sender and receiver can not be created."
         );
         process.exit(1);
+    } else if (usefulInterfaces?.length === 1)
+        // If only one interface is found.
+
+        return getIPv4FromNetworkInterface(usefulInterfaces[0].value);
+    else {
+        // If multiple interfaces are found.
+
+        if (usefulInterfaces) {
+            const readlineInterface = createInterface({
+                input: process.stdin,
+                output: process.stdout,
+            });
+
+            let interfaceIps = usefulInterfaces.map((interfaceObject) => {
+                return {
+                    type: interfaceObject.type,
+                    ip: getIPv4FromNetworkInterface(interfaceObject.value),
+                };
+            });
+
+            let validAnswers = interfaceIps.map((_, index) => `${index + 1}`);
+
+            let validAnswersString = "";
+
+            for (let index = 0; index < validAnswers.length; index++) {
+                validAnswersString += `${index === 0 ? "" : " "}${
+                    validAnswers[index]
+                },`;
+                if (index === validAnswers.length - 1)
+                    validAnswersString += ` or ${validAnswers[index]}`;
+            }
+
+            let answer: string = await new Promise(function (resolve) {
+                readlineInterface.question(
+                    attentionMsg(interfaceIps, validAnswersString),
+                    resolve
+                );
+            });
+
+            while (!validAnswers.includes(answer))
+                answer = await new Promise(function (resolve) {
+                    readlineInterface.question(
+                        warningMsg(validAnswersString),
+                        resolve
+                    );
+                });
+
+            return interfaceIps[Number(answer) - 1].ip;
+        }
     }
 
     return "127.0.0.1";
