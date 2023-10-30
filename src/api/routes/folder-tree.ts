@@ -5,6 +5,7 @@ import { getPortValue } from "../../sender/port";
 import { routesPrefix } from "../routes-prefix";
 import { getPathData } from "../../helpers/file-system/path-data";
 import { isDir } from "../../helpers/path-type/is-dir";
+import { platform } from "process";
 
 export const FolderTree = {
     path: "/folder-tree",
@@ -32,13 +33,12 @@ FolderTree.router.get("/", (req, res) => {
         let finalPath = join(sharedPath, path),
             pathStatus = isDir(finalPath);
 
-        let pathList = join(basename(sharedPath), path);
+        let pathList = join(basename(sharedPath), path).split(platform === 'win32'?`\\`: "/");
 
-        if (pathList.charAt(pathList.length - 1) === "/")
-            pathList = pathList.substring(0, pathList.length - 1);
+        pathList = pathList.filter(folder => folder !== '');
 
         if (pathStatus === true) {
-            res.send(getPathData(finalPath, pathList.split("/")));
+            res.send(getPathData(finalPath, pathList));
             return;
         }
 
