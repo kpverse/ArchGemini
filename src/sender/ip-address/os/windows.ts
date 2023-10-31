@@ -17,25 +17,21 @@ const attentionMsg = (
     return `
 To continue, the receiver device must be connected to any one of the following networks:
 
-${interfaceIps.map((ipObject, index) => {
-    let msgStr: string;
-
-    if (index === 0) msgStr = "";
-    else msgStr = "\n";
-
-    if (ipObject.type === "WiFi")
-        msgStr += `${index + 1}. The same Wi-Fi network as your device (${
-            ipObject.ip
-        }).`;
-    else if (ipObject.type === "LAC")
-        msgStr += `${index + 1}. The Hotspot of your device (${ipObject.ip}).`;
-    else if (ipObject.type === "Ethernet")
-        msgStr += `${index + 1}. The same Ethernet as your device (${
-            ipObject.ip
-        }).`;
-
-    return msgStr;
-})}
+${(() => {
+    let msglist = interfaceIps.map((ipObject, index) => {
+        if (ipObject.type === "WiFi")
+            return `${index + 1}. The same Wi-Fi network as your device (${
+                ipObject.ip
+            }).`;
+        else if (ipObject.type === "LAC")
+            return `${index + 1}. The Hotspot of your device (${ipObject.ip}).`;
+        else if (ipObject.type === "Ethernet")
+            return `${index + 1}. The same Ethernet as your device (${
+                ipObject.ip
+            }).`;
+    });
+    return msglist.join("\n");
+})()}
 
 On which network the receiver device is connected to?
 Enter any one from ${validAnswersString}
