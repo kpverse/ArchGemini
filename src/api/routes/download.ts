@@ -5,12 +5,12 @@ import { join } from "path";
 import { sharedPath } from "../../sender/shared-folder";
 import { isFile } from "../../helpers/path-type/is-file";
 
-export const DownloadFiles = {
+export const DownloadFile = {
     path: "/download",
     router: Router(),
 };
 
-DownloadFiles.router.get("/file", (req, res) => {
+DownloadFile.router.get("/file", (req, res) => {
     (async () => {
         if (sharedPath === undefined) {
             res.send({
@@ -22,7 +22,7 @@ DownloadFiles.router.get("/file", (req, res) => {
         let path = new URL(
             `http://localhost:${await getPortValue()}${join(
                 routesPrefix,
-                DownloadFiles.path,
+                DownloadFile.path,
                 req.url
             )}`
         ).searchParams.get("path");

@@ -1,7 +1,8 @@
 const { execSync } = require("child_process");
+const { rmSync } = require("fs");
+const { join } = require("path");
 
 let commands = [
-    "rm -rf ./build/",
     "npx swc ./src -d ./build --config-file config1.swcrc",
     "npx rollup -c --environment reason:bundling",
     "npx swc ./bin/index.esm.js -o ./bin/index.esm.js --config-file config2.swcrc -C module.type=es6",
@@ -16,5 +17,9 @@ function runCommand(index = 0) {
 
     if (index < commands.length - 1) runCommand(index + 1);
 }
+
+try {
+    rmSync(join("./build"), { recursive: true, force: true });
+} catch (error) {}
 
 runCommand();

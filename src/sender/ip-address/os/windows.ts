@@ -2,33 +2,43 @@ import { createInterface } from "readline";
 import { getIPv4FromNetworkInterface } from "../../../helpers/ip-from-interface";
 import { getNetworkInterfaces } from "../../../helpers/network-interfaces";
 
+type validInterfaceTypes = "Ethernet" | "LAC" | "WiFi";
+
 const warningMsg = (validAnswersString: string) => {
     return `
-Enter ${validAnswersString}.
+Enter any one from ${validAnswersString} only!
 > `;
 };
 
 const attentionMsg = (
-    interfaceIps: { type: "e" | "l" | "w"; ip: string }[],
+    interfaceIps: { type: validInterfaceTypes; ip: string }[],
     validAnswersString: string
 ) => {
     return `
-To continue, the receiver device must be connected to one of the following networks:
+To continue, the receiver device must be connected to any one of the following networks:
 
 ${interfaceIps.map((ipObject, index) => {
-    if (ipObject.type === "w")
-        return `${index + 1}. The same Wi-Fi network as your device (${
+    let msgStr: string;
+
+    if (index === 0) msgStr = "";
+    else msgStr = "\n";
+
+    if (ipObject.type === "WiFi")
+        msgStr += `${index + 1}. The same Wi-Fi network as your device (${
             ipObject.ip
         }).`;
-    else if (ipObject.type === "l")
-        return `${index + 1}. The Hotspot of your device (${ipObject.ip}).`;
-    else if (ipObject.type === "e")
-        return `${index + 1}. The same Ethernet as your device (${
+    else if (ipObject.type === "LAC")
+        msgStr += `${index + 1}. The Hotspot of your device (${ipObject.ip}).`;
+    else if (ipObject.type === "Ethernet")
+        msgStr += `${index + 1}. The same Ethernet as your device (${
             ipObject.ip
         }).`;
+
+    return msgStr;
 })}
 
-Enter ${validAnswersString}.
+On which network the receiver device is connected to?
+Enter any one from ${validAnswersString}
 > `;
 };
 
@@ -47,12 +57,12 @@ export async function WindowsIPv4() {
 
     let usefulInterfaces:
         | {
-              type: "e" | "l" | "w";
+              type: validInterfaceTypes;
               value: interfaceType;
           }[]
         | undefined;
 
-    let usefulInterfacesHelper = (type: "e" | "l" | "w", key: string) => {
+    let usefulInterfacesHelper = (type: validInterfaceTypes, key: string) => {
         if (!usefulInterfaces)
             usefulInterfaces = [
                 {
@@ -62,7 +72,7 @@ export async function WindowsIPv4() {
             ];
         else
             usefulInterfaces.push({
-                type: "w",
+                type: type,
                 value: interfaces[key],
             });
     };
@@ -70,10 +80,10 @@ export async function WindowsIPv4() {
     for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
 
-        if (key === "Wi-Fi") usefulInterfacesHelper("w", key);
+        if (key === "Wi-Fi") usefulInterfacesHelper("WiFi", key);
         else if (key.startsWith("Local Area Connection* "))
-            usefulInterfacesHelper("l", key);
-        else if (key === "Ethernet") usefulInterfacesHelper("w", key);
+            usefulInterfacesHelper("LAC", key);
+        else if (key === "Ethernet") usefulInterfacesHelper("Ethernet", key);
 
         if (usefulInterfaces?.length === 3) break;
     }
@@ -97,14 +107,14 @@ export async function WindowsIPv4() {
                 output: process.stdout,
             });
 
-            let interfaceIps = usefulInterfaces.map((interfaceObject) => {
+            const interfaceIps = usefulInterfaces.map((interfaceObject) => {
                 return {
                     type: interfaceObject.type,
                     ip: getIPv4FromNetworkInterface(interfaceObject.value),
                 };
             });
 
-            let validAnswers = interfaceIps.map((_, index) => `${index + 1}`);
+            const validAnswers = interfaceIps.map((_, index) => `${index + 1}`);
 
             let validAnswersString = "";
 
@@ -113,7 +123,7 @@ export async function WindowsIPv4() {
                     validAnswers[index]
                 },`;
                 if (index === validAnswers.length - 1)
-                    validAnswersString += ` or ${validAnswers[index]}`;
+                    validAnswersString += ` and ${validAnswers[index]}`;
             }
 
             let answer: string = await new Promise(function (resolve) {
