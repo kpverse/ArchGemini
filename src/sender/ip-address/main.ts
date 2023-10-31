@@ -1,7 +1,4 @@
-import { platform } from "process";
-import { MacOSIPv4 } from "./os/macos";
-import { WindowsIPv4 } from "./os/windows";
-import { LinuxIPv4 } from "./os/linux";
+import { getAvailableIP } from "./get-available-ip";
 
 let IPv4: string | undefined = undefined;
 
@@ -12,11 +9,8 @@ export async function getIPv4(Options?: Options) {
 
     let { forceRefresh } = Options;
 
-    if (IPv4 === undefined || forceRefresh === true) {
-        if (platform === "darwin") IPv4 = MacOSIPv4();
-        else if (platform === "win32") IPv4 = await WindowsIPv4();
-        else IPv4 = LinuxIPv4();
-    }
+    if (IPv4 === undefined || forceRefresh === true)
+        IPv4 = await getAvailableIP();
 
     return IPv4;
 }

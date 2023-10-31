@@ -13,6 +13,7 @@ export default [
             "detect-port",
             "fs",
             "readline",
+            "table",
         ],
     },
 
