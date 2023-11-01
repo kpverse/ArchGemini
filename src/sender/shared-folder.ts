@@ -1,6 +1,6 @@
-export let sharedPath: string | undefined;
+export let SharedPath: string | undefined;
 
 export function setSharedPath(newPath?: string) {
-    sharedPath = newPath;
-    return sharedPath;
+    SharedPath = newPath;
+    return SharedPath;
 }

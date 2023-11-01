@@ -6,13 +6,15 @@ export default [
             format: "esm",
         },
         external: [
-            "express",
             "os",
             "process",
             "path",
             "detect-port",
             "fs",
             "readline",
+            //
+            "body-parser",
+            "express",
             "table",
         ],
     },

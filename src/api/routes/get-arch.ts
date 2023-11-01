@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sharedPath } from "../../sender/shared-folder";
+import { SharedPath } from "../../sender/shared-folder";
 import { basename, join } from "path";
 import { getPortValue } from "../../sender/port";
 import { routesPrefix } from "../routes-prefix";
@@ -7,14 +7,14 @@ import { getPathData } from "../../helpers/file-system/path-data";
 import { isDir } from "../../helpers/path-type/is-dir";
 import { platform } from "process";
 
-export const FolderTree = {
-    path: "/folder-tree",
+export const GetArch = {
+    path: "/get-arch",
     router: Router(),
 };
 
-FolderTree.router.get("/", (req, res) => {
+GetArch.router.get("/", (req, res) => {
     (async () => {
-        if (sharedPath === undefined) {
+        if (SharedPath === undefined) {
             res.send({
                 status: "THERE_ARE_NO_SHARED_PATHS",
             });
@@ -25,15 +25,15 @@ FolderTree.router.get("/", (req, res) => {
             new URL(
                 `http://localhost:${await getPortValue()}${join(
                     routesPrefix,
-                    FolderTree.path,
+                    GetArch.path,
                     req.url
                 )}`
             ).searchParams.get("path") || "/";
 
-        let finalPath = join(sharedPath, path),
+        let finalPath = join(SharedPath, path),
             pathStatus = isDir(finalPath);
 
-        let pathList = join(basename(sharedPath), path).split(
+        let pathList = join(basename(SharedPath), path).split(
             platform === "win32" ? `\\` : "/"
         );
 

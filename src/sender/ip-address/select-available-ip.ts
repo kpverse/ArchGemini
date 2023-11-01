@@ -6,16 +6,16 @@ export type usefulInterfaceList = {
     ip: string;
 }[];
 
-type tableContent = [string | number, string, string][];
+type tableContent = [string, string, string][];
 
-let consoleMsg = (tableContent: tableContent, validAnswersString: string) => {
+const consoleMsg = (tableContent: tableContent, validAnswersString: string) => {
     return `
 Multiple network interfaces found
 
 ${table(tableContent)}
 
 On which network the receiver device is connected to?
-Enter any one from ${validAnswersString}
+Enter any one from ${validAnswersString}.
 > `;
 };
 
@@ -33,23 +33,22 @@ export async function selectAvailableIP(
         output: process.stdout,
     });
 
-    const validAnswers = usefulInterfaceList.map((_, index) => `${index + 1}`);
+    let tableContent: tableContent = [["", "Network Interface", "IP Address"]],
+        validAnswersString = "",
+        validAnswers: string[] = [];
+    for (let index = 0; index < usefulInterfaceList.length; index++) {
+        const indexStr = `${index + 1}`,
+            { name, ip } = usefulInterfaceList[index];
 
-    let validAnswersString = "";
+        tableContent.push([indexStr, name, ip]);
 
-    for (let index = 0; index < validAnswers.length; index++) {
-        validAnswersString += `${index === 0 ? "" : " "}${
-            validAnswers[index]
-        },`;
-        if (index === validAnswers.length - 1)
-            validAnswersString += ` and ${validAnswers[index]}`;
+        if (index === 0) validAnswersString += indexStr;
+        if (index === usefulInterfaceList.length - 1)
+            validAnswersString += ` and ${indexStr}`;
+        else validAnswersString += `, ${indexStr}`;
+
+        validAnswers.push(indexStr);
     }
-
-    let tableContent: tableContent = [["", "Network Interface", "IP Address"]];
-
-    usefulInterfaceList.forEach(({ name, ip }, index) => {
-        tableContent.push([index + 1, name, ip]);
-    });
 
     let answer: string = await new Promise(function (resolve) {
         readlineInterface.question(

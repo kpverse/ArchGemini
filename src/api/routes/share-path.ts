@@ -1,16 +1,20 @@
 import { Router } from "express";
-import { getPortValue } from "../../sender/port";
 import { getIPv4 } from "../../sender/ip-address/main";
 import { setSharedPath } from "../../sender/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
 import { join } from "path";
+import bodyParser from "body-parser";
 
-export const RegisterPath = {
-    path: "/register-path",
+export const SharePath = {
+    path: "/share-path",
     router: Router(),
 };
 
-RegisterPath.router.get("/", (req, res) => {
+SharePath.router.use(bodyParser.urlencoded({ extended: false }));
+
+SharePath.router.use(bodyParser.json());
+
+SharePath.router.post("/", (req, res) => {
     (async () => {
         // Logic for checking if the request is coming from sender or not.
         let { remoteAddress } = req.socket;
@@ -21,19 +25,15 @@ RegisterPath.router.get("/", (req, res) => {
             )
         ) {
             res.send({
-                status: "BETTER_LUCK_NEXT_TIME",
+                status: "YOU_DONT_HAVE_PERMISSION_TO_CHANGE",
             });
             return;
         }
 
         // If the request is coming from receiver, then and then the following code will run.
-        let path = new URL(
-            `http://localhost:${await getPortValue()}${RegisterPath.path}${
-                req.url
-            }`
-        ).searchParams.get("path");
+        let path = req.body["path"];
 
-        if (path === null) {
+        if (path === undefined) {
             res.send({
                 status: "PATH_IS_NOT_GIVEN",
             });

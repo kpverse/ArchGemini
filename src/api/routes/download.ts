@@ -2,7 +2,7 @@ import { Router } from "express";
 import { routesPrefix } from "../routes-prefix";
 import { getPortValue } from "../../sender/port";
 import { join } from "path";
-import { sharedPath } from "../../sender/shared-folder";
+import { SharedPath } from "../../sender/shared-folder";
 import { isFile } from "../../helpers/path-type/is-file";
 
 export const DownloadFile = {
@@ -12,7 +12,7 @@ export const DownloadFile = {
 
 DownloadFile.router.get("/file", (req, res) => {
     (async () => {
-        if (sharedPath === undefined) {
+        if (SharedPath === undefined) {
             res.send({
                 status: "THERE_ARE_NO_SHARED_PATHS",
             });
@@ -34,7 +34,7 @@ DownloadFile.router.get("/file", (req, res) => {
             return;
         }
 
-        let finalPath = join(sharedPath, path),
+        let finalPath = join(SharedPath, path),
             pathStatus = isFile(finalPath);
 
         if (pathStatus === true) {
