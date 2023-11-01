@@ -8,18 +8,14 @@ import { selectAvailableIP, usefulInterfaceList } from "./select-available-ip";
 export async function getAvailableIP() {
     let interfaces = getNetworkInterfaces() as {
         [_: string]: interfaceObject;
-    };
-
-    let unfilteredUsefulInterfaceList = Object.entries(interfaces).map(
+    }, unfilteredUsefulInterfaceList = Object.entries(interfaces).map(
         ([name, interfaceObject]) => {
             return {
                 name,
                 ip: getIPv4FromNetworkInterface(interfaceObject),
             };
         }
-    );
-
-    let usefulInterfaceList: usefulInterfaceList = [];
+    ), usefulInterfaceList: usefulInterfaceList = [];
 
     unfilteredUsefulInterfaceList.forEach(({ name, ip }) => {
         if (ip)

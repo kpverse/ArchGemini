@@ -22,20 +22,18 @@ GetArch.router.get("/", (req, res) => {
         }
 
         let path =
-            new URL(
-                `http://localhost:${await getPortValue()}${join(
-                    routesPrefix,
-                    GetArch.path,
-                    req.url
-                )}`
-            ).searchParams.get("path") || "/";
-
-        let finalPath = join(SharedPath, path),
-            pathStatus = isDir(finalPath);
-
-        let pathList = join(basename(SharedPath), path).split(
-            platform === "win32" ? `\\` : "/"
-        );
+                new URL(
+                    `http://localhost:${await getPortValue()}${join(
+                        routesPrefix,
+                        GetArch.path,
+                        req.url
+                    )}`
+                ).searchParams.get("path") || "/",
+            finalPath = join(SharedPath, path),
+            pathStatus = isDir(finalPath),
+            pathList = join(basename(SharedPath), path).split(
+                platform === "win32" ? `\\` : "/"
+            );
 
         pathList = pathList.filter((folder) => folder !== "");
 

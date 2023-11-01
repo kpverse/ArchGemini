@@ -6,19 +6,17 @@ import { fileInfoType, getFileInfo } from "./file-info";
 export function getPathData(path: PathLike, pathList?: string[]) {
     try {
         let pathObj: {
-            fld?: folderInfoType[];
-            fls?: fileInfoType[];
-            pls: string[];
-        } = {
-            pls: pathList ? pathList : [],
-        };
-
-        let content = readdirSync(path);
+                fld?: folderInfoType[];
+                fls?: fileInfoType[];
+                pls: string[];
+            } = {
+                pls: pathList ? pathList : [],
+            },
+            content = readdirSync(path);
 
         content.forEach((name) => {
-            let wholePath = join(path as string, name);
-
-            let fileInfo = getFileInfo(wholePath);
+            let wholePath = join(path as string, name),
+                fileInfo = getFileInfo(wholePath);
 
             if (fileInfo.skip === true) {
                 let folderInfo = getFolderInfo(wholePath);

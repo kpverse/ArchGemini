@@ -8,9 +8,9 @@ const ExpressApp = express();
 
 ExpressApp.use(API.path, API.router);
 
-(async () => {
-    let port = await getPortValue();
-    let ip = await getIPv4();
+async function main() {
+    let port = await getPortValue(),
+        ip = await getIPv4();
 
     ExpressApp.listen(port, () => {
         console.log(`
@@ -18,4 +18,6 @@ Server is running at http://${ip}:${port}
 
 Press ${platform === "darwin" ? "command" : "control"} + c to close this app.`);
     });
-})();
+}
+
+main();
