@@ -13,10 +13,7 @@ ExpressApp.use(cors());
 
 ExpressApp.use(API.path, API.router);
 
-ExpressApp.use(
-    "/archgemini/sender",
-    express.static(join(__dirname, "../gui/sender"))
-);
+ExpressApp.use("/archgemini/", express.static(join(__dirname, "../gui/")));
 
 async function main() {
     let port = await getPortValue(),
