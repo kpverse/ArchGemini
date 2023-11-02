@@ -1,6 +1,8 @@
-export let SharedPath: string | undefined;
+import { resolve } from "path";
 
-export function setSharedPath(newPath?: string) {
+export let SharedPath: string = resolve("");
+
+export function setSharedPath(newPath: string) {
     SharedPath = newPath;
     return SharedPath;
 }

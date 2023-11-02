@@ -32,6 +32,6 @@ export function getPathData(path: PathLike, pathList?: string[]) {
 
         return pathObj;
     } catch {
-        return { ERROR: "Some error has occured." };
+        return { ERROR: "Some error has occurred." };
     }
 }

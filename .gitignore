@@ -7,3 +7,5 @@ node_modules
 /bin
 
 package-lock.json
+
+copy-gui-here.js
