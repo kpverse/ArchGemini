@@ -16,19 +16,23 @@ ExpressApp.use(API.path, API.router);
 ExpressApp.use("/archgemini/", express.static(join(__dirname, "../gui/")));
 
 async function main() {
-    let port = await getPortValue(),
-        ip = await getIPv4();
+  let port = await getPortValue(),
+    ip = await getIPv4();
 
-    ExpressApp.listen(port, () => {
-        let url = `http://${ip}:${port}/archgemini/sender`;
+  ExpressApp.listen(port, () => {
+    let url = `http://${ip}:${port}/archgemini/sender`;
 
-        console.log(`
+    console.log(`
 Server is running at ${url}
 
 Press ${platform === "darwin" ? "command" : "control"} + c to close this app.`);
 
-        openLink(url);
-    });
+    try {
+      openLink(url);
+    } catch (error) {
+        console.log(error.message)
+    }
+  });
 }
 
 main();
