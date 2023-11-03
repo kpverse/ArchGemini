@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getIPv4 } from "../../sender/ip-address/main";
-import { setSharedPath } from "../../sender/shared-folder";
+import { setSharedFolder } from "../../sender/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
 import { join } from "path";
 import bodyParser from "body-parser";
@@ -43,7 +43,7 @@ SharePath.router.post("/", (req, res) => {
         // Check if the path exists or not.
         let pathStatus = isDir(path);
         if (pathStatus === true) {
-            setSharedPath(join(path, "/"));
+            setSharedFolder(join(path, "/"));
 
             res.send({
                 status: "PATH_SHARED",

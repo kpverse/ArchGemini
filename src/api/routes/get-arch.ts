@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { SharedPath } from "../../sender/shared-folder";
+import { SharedFolder } from "../../sender/shared-folder";
 import { basename, join } from "path";
 import { getPortValue } from "../../sender/port";
 import { routesPrefix } from "../routes-prefix";
@@ -14,13 +14,6 @@ export const GetArch = {
 
 GetArch.router.get("/", (req, res) => {
     (async () => {
-        if (SharedPath === undefined) {
-            res.send({
-                status: "THERE_ARE_NO_SHARED_PATHS",
-            });
-            return;
-        }
-
         let path =
                 new URL(
                     `http://localhost:${await getPortValue()}${join(
@@ -29,9 +22,9 @@ GetArch.router.get("/", (req, res) => {
                         req.url
                     )}`
                 ).searchParams.get("path") || "/",
-            finalPath = join(SharedPath, path),
+            finalPath = join(SharedFolder, path),
             pathStatus = isDir(finalPath),
-            pathList = join(basename(SharedPath), path).split(
+            pathList = join(basename(SharedFolder), path).split(
                 platform === "win32" ? `\\` : "/"
             );
 

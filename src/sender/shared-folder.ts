@@ -1,8 +1,8 @@
 import { resolve } from "path";
 
-export let SharedPath: string = resolve("");
+export let SharedFolder: string = resolve("");
 
-export function setSharedPath(newPath: string) {
-    SharedPath = newPath;
-    return SharedPath;
+export function setSharedFolder(newPath: string) {
+    SharedFolder = newPath;
+    return SharedFolder;
 }
