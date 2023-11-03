@@ -43,7 +43,7 @@ export async function selectAvailableIP(
         tableContent.push([indexStr, name, ip]);
 
         if (index === 0) validAnswersString += indexStr;
-        if (index === usefulInterfaceList.length - 1)
+        else if (index === usefulInterfaceList.length - 1)
             validAnswersString += ` and ${indexStr}`;
         else validAnswersString += `, ${indexStr}`;
 

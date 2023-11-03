@@ -27,7 +27,11 @@ Server is running at ${url}
 
 Press ${platform === "darwin" ? "command" : "control"} + c to close this app.`);
 
-        openLink(url);
+        try {
+            openLink(url);
+        } catch (error) {
+            console.log(error.message);
+        }
     });
 }
 
