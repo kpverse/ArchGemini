@@ -1,5 +1,5 @@
 const productionSettings = {
-    PRODUCTION: false,
+    PRODUCTION: true,
     BACKEND_SERVER_URL_ORIGIN: "http://localhost:2211",
 };
 
