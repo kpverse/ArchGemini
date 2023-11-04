@@ -1,1 +1,1 @@
-export const routesPrefix = "/archgemini/api";
+export const routesPrefix = "/archgemini/_api";
