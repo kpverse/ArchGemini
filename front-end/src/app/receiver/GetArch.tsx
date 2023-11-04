@@ -60,7 +60,7 @@ export default function GetArch() {
                     pathListObject[pathListObject.length - 1]
                 } - ArchGemini`;
             else document.title = "ArchGemini from KPVERSE";
-        } else document.title = `Oops!! Nothing to show - ArchGemini`;
+        } else document.title = `😬 Oops! Nothing to show - ArchGemini`;
     }, [pathListObject]);
 
     return (
@@ -110,7 +110,9 @@ export default function GetArch() {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "space-around",
-                        borderBottom: "1px solid #e0e0e0",
+                        border: "1px solid #e0e0e0",
+                        borderTopLeftRadius: "24px",
+                        borderTopRightRadius: "24px",
                     }}
                 >
                     <strong>No paths found</strong>

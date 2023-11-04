@@ -63,6 +63,7 @@ export default function ContentTable({
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "space-around",
+                    padding: "16px",
                 }}
             >
                 <div
