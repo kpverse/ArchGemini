@@ -2,7 +2,7 @@ export default [
     process.env.reason === "bundling" && {
         input: "./build/main.js",
         output: {
-            file: "./bin/index.esm.js",
+            file: "../lib/index.esm.js",
             format: "esm",
         },
         external: [

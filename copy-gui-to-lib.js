@@ -18,4 +18,4 @@ function copyFolderContent(from, to) {
     cpSync(from, to, { recursive: true });
 }
 
-copyFolderContent(resolve("../front-end/out"), resolve("./gui/"));
+copyFolderContent(resolve("./front-end/out"), resolve("./lib/gui/"));
