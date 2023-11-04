@@ -1,0 +1,42 @@
+.table {
+    width: 100%;
+    min-width: 500px;
+    border-collapse: collapse;
+
+    tr {
+        height: 64px;
+
+        &:first-child {
+            td {
+                border-top: 0;
+            }
+        }
+
+        td {
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+
+            border-bottom: 0;
+
+            border-left: 0;
+
+            white-space: nowrap;
+
+            &:first-child {
+                a {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    span {
+                        margin-left: 6px;
+                    }
+                }
+            }
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+}

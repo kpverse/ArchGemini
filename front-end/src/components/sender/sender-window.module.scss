@@ -1,0 +1,75 @@
+$padding: 16px;
+$border-radius: 1px;
+
+.frame {
+    width: 100vw;
+    min-height: 100vh;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .main-window {
+        padding: $padding;
+
+        width: calc(500px - ($padding + $border-radius) * 2);
+
+        border: $border-radius solid #e0e0e0;
+        border-radius: 24px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .video-and-image {
+            aspect-ratio: 966 / 208;
+            width: 100%;
+        }
+
+        .qr-code-frame {
+            padding: $padding * 2;
+
+            width: 100%;
+            margin-top: $padding;
+
+            border-radius: 8px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .qr-code {
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: $padding;
+            }
+        }
+
+        .qr-warning {
+            padding: $padding * 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .warning-msg {
+                padding: $padding 0;
+                text-align: center;
+            }
+
+            .understood {
+                padding: $padding / 1.618 $padding;
+                font-size: 20px;
+                background-color: black;
+                color: white;
+                border: none;
+                border-radius: 8px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

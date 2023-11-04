@@ -1,0 +1,37 @@
+.response-msg {
+    margin-bottom: 32px;
+    font-size: 20px;
+    color: #afafaf;
+}
+
+.new-folder-input {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+
+    background-color: #efefef;
+
+    border: 1px solid transparent;
+    &:focus {
+        outline: none;
+        background-color: white;
+        border-color: #e0e0e0;
+    }
+}
+
+.share-btn {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    margin-top: 16px;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: black;
+    color: white;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
