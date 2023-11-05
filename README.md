@@ -1,3 +1,3 @@
-![](./front-end/public/archgemini-from-kpverse.jpg)
+![](./archgemini-og.jpg)
 
 <h1 align="center">ArchGemini</h1>
