@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { createInterface } from "readline";
 import { table } from "table";
 
@@ -10,18 +11,18 @@ type tableContent = [string, string, string][];
 
 const consoleMsg = (tableContent: tableContent, validAnswersString: string) => {
     return `
-Multiple network interfaces found
+${chalk.green("Multiple network interfaces found")}
 
 ${table(tableContent)}
 
-On which network the receiver device is connected to?
-Enter any one from ${validAnswersString}.
+${chalk.green("On which network the receiver device is connected to?")}
+Enter any one from ${chalk.yellow(validAnswersString)}.
 > `;
 };
 
 const warningMsg = (validAnswersString: string) => {
     return `
-Enter any one from ${validAnswersString} only!
+Enter any one from ${chalk.yellow(validAnswersString)} only!
 > `;
 };
 
@@ -33,14 +34,17 @@ export async function selectAvailableIP(
         output: process.stdout,
     });
 
-    let tableContent: tableContent = [["", "Network Interface", "IP Address"]],
+    let tableContent: tableContent = [
+            ["", chalk.yellow("Network Interface"), chalk.yellow("IP Address")],
+        ],
         validAnswersString = "",
         validAnswers: string[] = [];
+
     for (let index = 0; index < usefulInterfaceList.length; index++) {
         const indexStr = `${index + 1}`,
             { name, ip } = usefulInterfaceList[index];
 
-        tableContent.push([indexStr, name, ip]);
+        tableContent.push([indexStr, chalk.green(name), chalk.blue(ip)]);
 
         if (index === 0) validAnswersString += indexStr;
         else if (index === usefulInterfaceList.length - 1)
