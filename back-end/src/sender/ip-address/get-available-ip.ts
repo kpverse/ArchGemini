@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import {
     getIPv4FromNetworkInterface,
     interfaceObject,
@@ -7,18 +8,20 @@ import { selectAvailableIP, usefulInterfaceList } from "./select-available-ip";
 
 export async function getAvailableIP() {
     let interfaces = getNetworkInterfaces() as {
-        [_: string]: interfaceObject;
-    }, unfilteredUsefulInterfaceList = Object.entries(interfaces).map(
-        ([name, interfaceObject]) => {
-            return {
-                name,
-                ip: getIPv4FromNetworkInterface(interfaceObject),
-            };
-        }
-    ), usefulInterfaceList: usefulInterfaceList = [];
+            [_: string]: interfaceObject;
+        },
+        unfilteredUsefulInterfaceList = Object.entries(interfaces).map(
+            ([name, interfaceObject]) => {
+                return {
+                    name,
+                    ip: getIPv4FromNetworkInterface(interfaceObject),
+                };
+            }
+        ),
+        usefulInterfaceList: usefulInterfaceList = [];
 
     unfilteredUsefulInterfaceList.forEach(({ name, ip }) => {
-        if (ip)
+        if (ip !== undefined)
             usefulInterfaceList.push({
                 name,
                 ip,
@@ -26,7 +29,9 @@ export async function getAvailableIP() {
     });
 
     if (usefulInterfaceList.length === 0) {
-        console.log("ERROR: No network interfaces found.");
+        console.log(
+            "\n" + chalk.redBright("ERROR:") + "No network interfaces found."
+        );
         process.exit(1);
     }
 

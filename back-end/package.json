@@ -5,13 +5,12 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node ../lib/index.cjs.js",
-    "test": "nodemon ../lib/index.cjs.js",
-    "build": "npm run build1 && npm run build2 && npm run build3 && npm run build4",
+    "start": "node ./bin/index.cjs.js",
+    "test": "nodemon ./bin/index.cjs.js",
+    "build": "npm run build1 && npm run build2 && npm run build3",
     "build1": "npx swc ./src -d ./build --config-file config1.swcrc",
     "build2": "npx rollup -c --environment reason:bundling",
-    "build3": "npx swc ../lib/index.esm.js -o ../lib/index.esm.js --config-file config2.swcrc -C module.type=es6",
-    "build4": "npx swc ../lib/index.esm.js -o ../lib/index.cjs.js --config-file config2.swcrc"
+    "build3": "npx swc ./bin/index.esm.js -o ./bin/index.cjs.js --config-file config2.swcrc"
   },
   "keywords": [],
   "author": "Kartavya Patel <thekpverse@gmail.com>",
@@ -29,6 +28,7 @@
   },
   "dependencies": {
     "body-parser": "^1.20.2",
+    "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "detect-port": "^1.5.1",
     "express": "^4.18.2",

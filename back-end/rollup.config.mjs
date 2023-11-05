@@ -2,8 +2,9 @@ export default [
     process.env.reason === "bundling" && {
         input: "./build/main.js",
         output: {
-            file: "../lib/index.esm.js",
+            file: "./bin/index.esm.js",
             format: "esm",
+            banner: "#!/usr/bin/env node",
         },
         external: [
             "os",
@@ -13,6 +14,7 @@ export default [
             "readline",
             //
             "body-parser",
+            "chalk",
             "cors",
             "detect-port",
             "express",
@@ -20,22 +22,4 @@ export default [
             "table",
         ],
     },
-
-    //     ...["esm", "cjs"].map((type) => {
-    //         return (
-    //             process.env.reason === "license-comment" && {
-    //                 input: `./bin/index.${type}.js`,
-    //                 output: {
-    //                     file: `./bin/index.${type}.js`,
-    //                     format: type,
-
-    //                     banner: `#!/usr/bin/env node
-
-    // /**
-    //  * Copyright © Kartavya Patel, KPVERSE - All Rights Reserved.
-    //  */`,
-    //                 },
-    //             }
-    //         );
-    //     }),
 ].filter(Boolean);

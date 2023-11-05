@@ -5,18 +5,15 @@
   "main": "index.js",
   "type": "commonjs",
   "bin": {
-    "deploy-nextjs": "bin/index.js"
+    "archgemini": "back-end/bin/index.cjs.js"
   },
   "files": [
-    "lib/gui/",
-    "lib/index.cj.js"
+    "front-end/out/",
+    "back-end/bin/index.cjs.js"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kpverse/archgemini.git"
-  },
-  "scripts": {
-    "start": "node ./lib/index.cjs.js"
   },
   "keywords": [],
   "author": {
@@ -26,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "detect-port": "^1.5.1",
     "express": "^4.18.2",
