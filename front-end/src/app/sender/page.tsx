@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import style from "./page.module.scss";
 import Link from "next/link";
 import rootPath from "@/metadata/root-path";
+import MoreLinks from "@/components/common/MoreLinks";
 
 export const metadata: Metadata = {
     title: "ArchGemini from KPVERSE",
@@ -11,13 +12,16 @@ export const metadata: Metadata = {
 
 export default function SenderHome() {
     return (
-        <SenderWindow>
-            <Link
-                className={style["change-shared-folder"]}
-                href={rootPath + "/sender/change-shared-folder"}
-            >
-                <span>Change Shared Folder</span>
-            </Link>
-        </SenderWindow>
+        <>
+            <SenderWindow>
+                <Link
+                    className={style["change-shared-folder"]}
+                    href={rootPath + "/sender/change-shared-folder"}
+                >
+                    <span>Change Shared Folder</span>
+                </Link>
+            </SenderWindow>
+            <MoreLinks />
+        </>
     );
 }

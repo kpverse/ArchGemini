@@ -51,7 +51,7 @@ SharePath.router.post("/", (req, res) => {
             return;
         }
 
-        if (pathStatus === "PATH_DO_NOT_EXIST") {
+        if (pathStatus === "PATH_DOES_NOT_EXIST") {
             res.send({
                 status: pathStatus,
             });
@@ -59,7 +59,7 @@ SharePath.router.post("/", (req, res) => {
         }
 
         res.send({
-            status: "NOT_A_DIRECTORY",
+            status: "NOT_A_FOLDER",
         });
     })();
 });

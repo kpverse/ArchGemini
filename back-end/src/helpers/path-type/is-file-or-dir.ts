@@ -3,8 +3,8 @@ import { checkIfPathExists } from "./check-if-path-exists";
 
 export function isFileOrDir(
     path: PathLike
-): "PATH_DO_NOT_EXIST" | "DIR" | "FILE" {
-    if (checkIfPathExists(path) === "NO") return "PATH_DO_NOT_EXIST";
+): "PATH_DOES_NOT_EXIST" | "DIR" | "FILE" {
+    if (checkIfPathExists(path) === "NO") return "PATH_DOES_NOT_EXIST";
 
     let stat = statSync(path);
 
@@ -14,5 +14,5 @@ export function isFileOrDir(
     } catch (error) {
         console.log(`\n${error}`);
     }
-    return "PATH_DO_NOT_EXIST";
+    return "PATH_DOES_NOT_EXIST";
 }

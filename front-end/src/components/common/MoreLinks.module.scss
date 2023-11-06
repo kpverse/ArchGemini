@@ -1,0 +1,26 @@
+.more-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 64px;
+
+    .content {
+        .link {
+            padding: 4px 8px;
+
+            background-color: transparent;
+
+            border-radius: 8px;
+
+            &:hover {
+                background-color: #efefef;
+            }
+        }
+
+        .separator {
+            margin: 0 8px;
+        }
+    }
+}

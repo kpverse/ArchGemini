@@ -8,7 +8,7 @@ import productionSettings from "@/metadata/production-settings";
 export default function ChangeSharedFolder() {
     const [inputValue, setInputValue] = useState(""),
         [responseMsg, setResponseMsg] = useState(""),
-        router = useRouter();
+        { push } = useRouter();
 
     async function updateFolder() {
         if (inputValue === "") {
@@ -43,23 +43,23 @@ export default function ChangeSharedFolder() {
                     | "YOU_DONT_HAVE_PERMISSION_TO_CHANGE"
                     | "PATH_IS_NOT_GIVEN"
                     | "PATH_SHARED"
-                    | "PATH_DO_NOT_EXIST"
-                    | "NOT_A_DIRECTORY";
+                    | "PATH_DOES_NOT_EXIST"
+                    | "NOT_A_FOLDER";
             };
 
             if (response.status === "PATH_SHARED") {
                 setResponseMsg("Folder shared successfully.");
 
                 setTimeout(() => {
-                    router.push(rootPath + "/sender/");
+                    push(rootPath + "/sender/");
                 }, 2000);
                 return;
-            } else if (response.status === "NOT_A_DIRECTORY")
-                setResponseMsg("Input is not a folder.");
-            else if (response.status === "PATH_DO_NOT_EXIST")
+            } else if (response.status === "NOT_A_FOLDER")
+                setResponseMsg("Given path is not a folder.");
+            else if (response.status === "PATH_DOES_NOT_EXIST")
                 setResponseMsg("Folder does not exist.");
             else if (response.status === "PATH_IS_NOT_GIVEN")
-                setResponseMsg("Folder path not given.");
+                setResponseMsg("Path path not given.");
             else if (response.status === "YOU_DONT_HAVE_PERMISSION_TO_CHANGE")
                 setResponseMsg(
                     "You don't have permission to change shared folder."

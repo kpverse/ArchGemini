@@ -30,7 +30,7 @@ export async function getAvailableIP() {
 
     if (usefulInterfaceList.length === 0) {
         console.log(
-            "\n" + chalk.redBright("ERROR:") + "No network interfaces found."
+            `\n${chalk.redBright("ERROR:")} No network interfaces found.`
         );
         process.exit(1);
     }

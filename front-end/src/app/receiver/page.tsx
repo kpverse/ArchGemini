@@ -3,6 +3,7 @@ import rootPath from "@/metadata/root-path";
 import { Metadata } from "next";
 import style from "./page.module.scss";
 import GetArch from "./GetArch";
+import MoreLinks from "@/components/common/MoreLinks";
 
 export const metadata: Metadata = {
     title: "ArchGemini from KPVERSE",
@@ -11,10 +12,13 @@ export const metadata: Metadata = {
 
 export default function page() {
     return (
-        <ReceiverWindow>
-            <div className={style["explorer-frame"]}>
-                <GetArch />
-            </div>
-        </ReceiverWindow>
+        <>
+            <ReceiverWindow>
+                <div className={style["explorer-frame"]}>
+                    <GetArch />
+                </div>
+            </ReceiverWindow>
+            <MoreLinks />
+        </>
     );
 }

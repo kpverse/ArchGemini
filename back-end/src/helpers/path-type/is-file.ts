@@ -2,7 +2,7 @@ import { PathLike } from "fs";
 import { checkIfPathExists } from "./check-if-path-exists";
 import { isFileOrDir } from "./is-file-or-dir";
 
-export function isFile(path: PathLike): boolean | "PATH_DO_NOT_EXIST" {
-    if (checkIfPathExists(path) === "NO") return "PATH_DO_NOT_EXIST";
+export function isFile(path: PathLike): boolean | "PATH_DOES_NOT_EXIST" {
+    if (checkIfPathExists(path) === "NO") return "PATH_DOES_NOT_EXIST";
     return isFileOrDir(path) === "FILE";
 }

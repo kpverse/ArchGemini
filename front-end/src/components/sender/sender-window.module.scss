@@ -3,7 +3,7 @@ $border-radius: 1px;
 
 .frame {
     width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 64px);
 
     background-color: white;
 

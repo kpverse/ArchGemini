@@ -5,7 +5,7 @@ import style from "./GetArch.module.scss";
 import Link from "next/link";
 import ContentTable, { fileInfoType, folderInfoType } from "./ContentTable";
 import productionSettings from "@/metadata/production-settings";
-import Head from "next/head";
+import rootPath from "@/metadata/root-path";
 
 type responseData = {
     fld?: folderInfoType[] | undefined;
@@ -20,21 +20,18 @@ export default function GetArch() {
         [fileObject, setFileObject] = useState(dummyValue),
         [folderObject, setFolderObject] = useState(dummyValue),
         [pathListObject, setPathListObject] = useState(dummyValue),
-        router = useRouter();
+        { replace } = useRouter();
 
     async function dataFetcher(path: string | null) {
         try {
-            if (path === null) {
-                router.push("./?path=/");
-                return;
-            }
+            if (path === null) replace(rootPath + "/receiver?path=/");
 
             let response = await fetch(
                     `${
                         productionSettings.PRODUCTION
                             ? ""
                             : productionSettings.BACKEND_SERVER_URL_ORIGIN
-                    }/archgemini/_api/get-arch?path=${path}`
+                    }/archgemini/_api/get-arch?path=${path || "/"}`
                 ),
                 data = (await response.json()) as responseData;
 
@@ -50,7 +47,6 @@ export default function GetArch() {
 
     useEffect(() => {
         dataFetcher(searchParams.get("path"));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     useEffect(() => {

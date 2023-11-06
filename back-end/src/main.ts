@@ -8,6 +8,7 @@ import { join } from "path";
 import openLink from "open";
 import { table } from "table";
 import chalk from "chalk";
+import { defaultShareFolder } from "./sender/shared-folder";
 
 const ExpressApp = express();
 
@@ -26,8 +27,8 @@ ${chalk.green.bold("ArchGemini started successfully.")}
 
 ${table([
     [chalk.yellow("Available services"), chalk.yellow("Service URL")],
-    ["ArchGemini Sender", chalk.blue(url + "/sender")],
-    ["ArchGemini Receiver", chalk.blue(url + "/receiver")],
+    ["ArchGemini Sender", chalk.blue.underline(url + "/sender")],
+    ["ArchGemini Receiver", chalk.blue.underline(url + "/receiver")],
 ])}
 
 ${chalk.cyan("- Trying to open")} ${chalk.blue.bold.underline(
@@ -49,10 +50,12 @@ ${chalk.green("Thank you for using ArchGemini!")}
 };
 
 async function main() {
-    console.log(chalk.green.bold("Starting Archgemini..."));
+    console.log(`\n${chalk.green.bold("Starting ArchGemini...")}`);
 
     let port = await getPortValue(),
         ip = await getIPv4();
+
+    defaultShareFolder();
 
     ExpressApp.listen(port, () => {
         let url = `http://${ip}:${port}/archgemini`;

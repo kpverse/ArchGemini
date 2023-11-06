@@ -1,0 +1,79 @@
+.about {
+    padding: 16px;
+    width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        margin-top: 48px;
+        width: 64%;
+        max-width: 200px;
+        aspect-ratio: 1;
+        border-radius: 100%;
+    }
+
+    h1 {
+        margin-top: 32px;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .who-is-kp {
+        text-align: center;
+        font-size: 16px;
+        color: #8f8f8f;
+        margin-bottom: 32px;
+    }
+
+    .story {
+        padding: 16px;
+        border-radius: 16px;
+        border: 2px solid #efefef;
+        width: 100%;
+        max-width: 700px;
+
+        p {
+            margin-top: 16px;
+            font-size: 18px;
+        }
+    }
+
+    .connect-with-us {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 32px;
+    }
+
+    .social {
+        max-width: 100%;
+        padding: 8px 12px;
+        margin-top: 16px;
+
+        border-radius: 16px;
+        background-color: rgb(244, 244, 244);
+
+        white-space: nowrap;
+
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
+        .separator {
+            margin: 0 8px;
+        }
+
+        .link {
+            &:hover {
+                color: #06f;
+            }
+        }
+    }
+}
