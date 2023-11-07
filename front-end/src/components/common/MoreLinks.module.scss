@@ -4,23 +4,51 @@
     align-items: center;
     justify-content: space-around;
 
-    height: 64px;
+    min-height: 64px;
+
+    padding: 16px;
 
     .content {
-        .link {
-            padding: 4px 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
 
-            background-color: transparent;
+        max-width: 100%;
 
-            border-radius: 8px;
+        white-space: nowrap;
 
-            &:hover {
-                background-color: #efefef;
+        overflow-y: auto;
+
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .links {
+            .link {
+                background-color: transparent;
+                border-radius: 8px;
+
+                &:hover {
+                    color: #06f;
+                }
+            }
+
+            .separator {
+                margin: 0 8px;
             }
         }
 
-        .separator {
-            margin: 0 8px;
+        .copyright {
+            a {
+                font-weight: 500;
+                &:hover {
+                    color: #06f;
+                }
+            }
         }
     }
 }
