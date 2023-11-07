@@ -1,4 +1,4 @@
-.not-found-frame {
+.frame {
     min-width: 100vw;
     min-height: calc(100vh - 64px);
     padding: 16px;
@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: space-around;
 
-    .not-found-content {
+    .content {
         width: 100%;
         max-width: 400px;
 
@@ -18,7 +18,7 @@
         flex-direction: column;
         align-items: center;
 
-        img {
+        .video-loader {
             margin-bottom: 32px;
             width: 100%;
         }

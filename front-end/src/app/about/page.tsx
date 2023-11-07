@@ -2,20 +2,25 @@ import { Metadata } from "next";
 import style from "./page.module.scss";
 import CommonHeader from "@/components/common/CommonHeader";
 import Link from "next/link";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
-    title: "About ArchGemini",
+    title: "About - ArchGemini",
 };
 
 export default function page() {
     return (
         <div className={style["about"]}>
             <CommonHeader title="About ArchGemini" />
+
             <img
+                className={style["kp-img"]}
                 src="https://avatars.githubusercontent.com/u/82671701"
                 alt="Kartavya Patel"
             />
-            <h1>Kartavya Patel</h1>
+
+            <h1 className={style["kp"]}>Kartavya Patel</h1>
+
             <span className={style["who-is-kp"]}>
                 Creator of{" "}
                 <strong>
@@ -23,108 +28,102 @@ export default function page() {
                         KPVERSE
                     </Link>
                 </strong>{" "}
-                and <strong>ArchGemini</strong>
+                and{" "}
+                <strong>
+                    <Link
+                        target={"_blank"}
+                        href={"https://kpverse.in/archgemini"}
+                    >
+                        ArchGemini
+                    </Link>
+                </strong>
             </span>
 
             <div className={style["story"]}>
                 <h2>The ArchGemini story</h2>
-                <p>
-                    On one day, when I needed to take some education-related
-                    files from the computer of my college's laboratory, I didn't
-                    wanted to deal with the hassle of external storage drives or
-                    worry about compatibility issues. That's when the concept of
+                <p className={style["text"]}>
+                    On one significant day, as I urgently needed to transfer
+                    essential lab work files from the computer in my college's
+                    laboratory to my own, the frustration of dealing with
+                    external storage drives and compatibility issues was at its
+                    peak. It was at that pivotal moment that the concept of
                     ArchGemini was born.
                 </p>
-                <p>
-                    The name 'ArchGemini' reflects its essence - 'Arch' for
-                    Architectural and 'Gemini' for Twins. It's like a magical
-                    twin-maker for your folders. ArchGemini creates virtual
-                    twins of shared folders, originating from the sender's
+                <p className={style["text"]}>
+                    The name 'ArchGemini' reflects its essence -{" "}
+                    <strong>'Arch' for Architectural or Structural</strong> and{" "}
+                    <strong>'Gemini' for Twins</strong>. It's like a magical
+                    twin-maker for the shared folder. ArchGemini creates virtual
+                    twins of shared folder, originating from the sender's
                     device, and effortlessly mirrors them onto the receiver's
-                    device via the local network, on demand.
+                    device over the local network, on demand.
                 </p>
-                <p>
+                <p className={style["text"]}>
                     What's even more remarkable is that ArchGemini plays well
-                    with all sorts of devices, whether it's a Mac, Windows, or
-                    Linux. No more fretting over physical storage drives or
-                    compatibility concerns. ArchGemini is your go-to solution
-                    for swift and seamless local network sharing, all while
-                    keeping your data securely within the boundaries of your
-                    network.
+                    with all sorts of operating systems, whether it's a{" "}
+                    <strong>macOS</strong>, <strong>Windows</strong>, or{" "}
+                    <strong>Linux</strong> distributions. No more fretting over
+                    physical storage drives or compatibility concerns.
+                    ArchGemini is your go-to solution for swift and seamless
+                    folder sharing via the local network, all while keeping your
+                    data securely within the boundaries of your network.
+                </p>
+                <p className={style["text"]}>
+                    Just as twins share a unique bond, ArchGemini effortlessly
+                    connects the receiver's device to the shared folder of the
+                    sender's device.
                 </p>
 
-                <p>
-                    Just as twins share a unique bond, ArchGemini effortlessly
-                    connects shared folders from the sender's device to the
-                    receiver's device.
-                </p>
+                <div className={style["author"]}>
+                    <span></span>
+                    <span className={style["author-name"]}>
+                        - Kartavya Patel
+                    </span>
+                </div>
             </div>
 
             <p className={style["connect-with-us"]}>Let's connect</p>
             <div className={style["social"]}>
-                <Link
-                    target={"_blank"}
-                    href={"https://x.com/thekpverse"}
-                    className={style["link"]}
-                >
-                    X
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://youtube.com/@thekpverse"}
-                    className={style["link"]}
-                >
-                    YouTube
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://linkedin.com/in/kartavyapatel"}
-                    className={style["link"]}
-                >
-                    LinkedIn
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://github.com/kpverse"}
-                    className={style["link"]}
-                >
-                    GitHub (KPVERSE)
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://github.com/patelka2211"}
-                    className={style["link"]}
-                >
-                    GitHub (Personal)
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://medium.com/@kpverse"}
-                    className={style["link"]}
-                >
-                    Medium
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"mailto:thekpverse@gmail.com"}
-                    className={style["link"]}
-                >
-                    Email
-                </Link>
-                <span className={style["separator"]}>·</span>
-                <Link
-                    target={"_blank"}
-                    href={"https://mastodon.social/@kpverse"}
-                    className={style["link"]}
-                >
-                    Mastodon
-                </Link>
+                {[
+                    { text: "X", url: "https://x.com/thekpverse" },
+                    { text: "YouTube", url: "https://youtube.com/@thekpverse" },
+                    {
+                        text: "LinkedIn",
+                        url: "https://linkedin.com/in/kartavyapatel",
+                    },
+                    {
+                        text: "GitHub (KPVERSE)",
+                        url: "https://github.com/kpverse",
+                    },
+                    {
+                        text: "GitHub (Personal)",
+                        url: "https://github.com/patelka2211",
+                    },
+                    { text: "Medium", url: "https://medium.com/@kpverse" },
+
+                    { text: "Email", url: "mailto:thekpverse@gmail.com" },
+                    {
+                        text: "Mastodon",
+                        url: "https://mastodon.social/@kpverse",
+                    },
+                ].map(({ text, url }, index) => {
+                    return (
+                        <Fragment key={text}>
+                            {index === 0 ? (
+                                <></>
+                            ) : (
+                                <span className={style["separator"]}>·</span>
+                            )}
+                            <Link
+                                target={"_blank"}
+                                href={url}
+                                className={style["link"]}
+                            >
+                                {text}
+                            </Link>
+                        </Fragment>
+                    );
+                })}
             </div>
         </div>
     );
