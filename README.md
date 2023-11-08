@@ -2,14 +2,20 @@
 
 <h1 align="center">ArchGemini</h1>
 
-ArchGemini simplifies local network folder sharing, providing an effortless and secure way to share your data with connected devices.
+ArchGemini simplifies file sharing over the local network, providing an effortless and secure way to share your files with connected devices.
 
 ## Installation
 
-To install ArchGemini, make sure you have Node.js or any other JavaScript runtime environmet is installed on your system, and then run the following command:
+To install ArchGemini, make sure you have Node.js or any other JavaScript runtime environment is installed on your system, and then run the following command:
 
 ```bash
+# If you want to install it globally in you system. (Recommended)
 npm i -g archgemini
+
+# or
+
+# If you want to install it in a particular folder
+npm i archgemini
 ```
 
 ## Usage
@@ -17,11 +23,16 @@ npm i -g archgemini
 After installation, run the following command in your terminal to share the current working directory via ArchGemini:
 
 ```bash
+# If you have installed it globally.
 archgemini
+
+# or
+
+# If you have installed it in a particular folder.
+npx archgemini
 ```
 
--   This tool is OS independent and made using web technologies, so you can use it on any device.
--   The only requirement is that both the sender and receiver divices must be connected to a common network.
+-   ArchGemini can run on macOS, Windows and Linux distributions as well. The only requirement is that both the sender and receiver divices must be connected to the same network.
 
 ## Contributing
 
@@ -37,4 +48,4 @@ If you have any questions or need assistance, you can reach out to us via email 
 
 ---
 
-<div align="center">from <strong><a href="https://kpverse.in">KPVERSE</a></strong></div>
+<div align="center">ArchGemini from <strong><a href="https://kpverse.in">KPVERSE</a></strong></div>

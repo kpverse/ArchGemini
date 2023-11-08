@@ -4,17 +4,25 @@
     align-items: center;
     justify-content: space-around;
 
-    min-height: 63px;
-
     padding: 16px;
 
-    border-top: 1px solid #e0e0e0;
+    padding-top: 0;
+
+    font-size: 16px;
 
     .content {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+
+        padding: 15px;
+
+        border-radius: 16px;
+
+        border: 1px solid #dfdfdf;
+
+        background-color: #f8f8f8;
 
         width: 100%;
 
@@ -30,6 +38,8 @@
         }
 
         .links {
+            font-weight: 500;
+
             .link {
                 background-color: transparent;
                 border-radius: 8px;
@@ -45,8 +55,10 @@
         }
 
         .copyright {
+            font-weight: 500;
+
             a {
-                font-weight: 500;
+                font-weight: 600;
                 &:hover {
                     color: #06f;
                 }

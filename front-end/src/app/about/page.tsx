@@ -4,15 +4,17 @@ import CommonHeader from "@/components/common/CommonHeader";
 import Link from "next/link";
 import { Fragment } from "react";
 import rootPath from "@/metadata/root-path";
+import ReloadMetadata from "@/components/common/ReloadMetadata";
 
 export const metadata: Metadata = {
     title: "About - ArchGemini",
+    icons: rootPath + "/favicon.ico",
 };
 
 export default function page() {
     return (
         <div className={style["about"]}>
-            <CommonHeader title="About ArchGemini" />
+            <CommonHeader title="Version 0.1.0" />
 
             <img
                 className={style["kp-img"]}
@@ -66,7 +68,7 @@ export default function page() {
                 </p>
                 <p className={style["text"]}>
                     What's even more remarkable is that ArchGemini plays well
-                    with all sorts of operating systems, whether it's a{" "}
+                    with all sorts of oper ating systems, whether it's a{" "}
                     <strong>macOS</strong>, <strong>Windows</strong>, or{" "}
                     <strong>Linux</strong> distributions. No more fretting over
                     physical storage drives or compatibility concerns.

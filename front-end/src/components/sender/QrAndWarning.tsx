@@ -37,15 +37,15 @@ export default function QrAndWarning() {
             {warningShown === false ? (
                 <>
                     <p className={style["warning-msg"]}>
-                        Please ensure that both the receiver device and this
-                        device are{" "}
+                        Please ensure that both the receiver device and the
+                        sender device are{" "}
                         <span>
                             <strong>connected to the same network</strong>.
                         </span>
                     </p>
 
                     <button
-                        className={style["understood"]}
+                        className={style["show-qr"]}
                         onClick={() => {
                             setWarningShown(true);
                             window.sessionStorage.setItem(
@@ -55,7 +55,7 @@ export default function QrAndWarning() {
                         }}
                     >
                         {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        Understood. Show QR.
+                        Show QR
                     </button>
                 </>
             ) : undefined}

@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import style from "./page.module.scss";
 import CommonHeader from "@/components/common/CommonHeader";
+import rootPath from "@/metadata/root-path";
 
 export const metadata: Metadata = {
     title: "ArchGemini Tutorial",
+    icons: rootPath + "/favicon.ico",
 };
 
 export default function page() {

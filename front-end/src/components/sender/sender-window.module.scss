@@ -3,7 +3,7 @@ $border-radius: 1px;
 
 .frame {
     width: 100vw;
-    min-height: calc(100vh - 64px);
+    min-height: calc(100vh - 67.5px);
 
     background-color: white;
 
@@ -60,7 +60,7 @@ $border-radius: 1px;
                 text-align: center;
             }
 
-            .understood {
+            .show-qr {
                 padding: $padding / 1.618 $padding;
                 font-size: 20px;
                 background-color: black;

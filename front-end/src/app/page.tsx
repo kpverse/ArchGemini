@@ -3,10 +3,18 @@ import style from "./page.module.scss";
 import Link from "next/link";
 import MoreLinks from "@/components/common/MoreLinks";
 import VideoLoader from "@/components/common/VideoLoader";
+import { Metadata } from "next";
+import ReloadMetadata from "@/components/common/ReloadMetadata";
+
+export const metadata: Metadata = {
+    title: "ArchGemini from KPVERSE",
+    icons: rootPath + "/favicon.ico",
+};
 
 export default function HomePage({ children }: { children?: React.ReactNode }) {
     return (
         <>
+            <ReloadMetadata title={metadata.title as string} />
             <div className={style["frame"]}>
                 <div className={style["content"]}>
                     <VideoLoader className={style["video-loader"]} />

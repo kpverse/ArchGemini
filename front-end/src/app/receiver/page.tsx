@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import style from "./page.module.scss";
 import GetArch from "./GetArch";
 import MoreLinks from "@/components/common/MoreLinks";
+import ReloadMetadata from "@/components/common/ReloadMetadata";
 
 export const metadata: Metadata = {
     title: "ArchGemini from KPVERSE",
