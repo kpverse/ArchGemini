@@ -1,4 +1,4 @@
-![](./archgemini-og.jpg)
+![](./front-end/public/archgemini-og.jpg)
 
 <h1 align="center">ArchGemini</h1>
 

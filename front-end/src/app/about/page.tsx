@@ -3,6 +3,7 @@ import style from "./page.module.scss";
 import CommonHeader from "@/components/common/CommonHeader";
 import Link from "next/link";
 import { Fragment } from "react";
+import rootPath from "@/metadata/root-path";
 
 export const metadata: Metadata = {
     title: "About - ArchGemini",
@@ -40,6 +41,11 @@ export default function page() {
             </span>
 
             <div className={style["story"]}>
+                <img
+                    className={style["archgemini-og"]}
+                    src={rootPath + "/archgemini-og.jpg"}
+                    alt=""
+                />
                 <h2>The ArchGemini story</h2>
                 <p className={style["text"]}>
                     On one significant day, as I urgently needed to transfer

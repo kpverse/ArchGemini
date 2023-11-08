@@ -7,6 +7,10 @@ export default function MoreLinks() {
         <div className={style["more-links"]}>
             <div className={style["content"]}>
                 <div className={style["links"]}>
+                    <Link className={style["link"]} href={rootPath + "/"}>
+                        Home
+                    </Link>
+                    <span className={style["separator"]}>·</span>
                     <Link className={style["link"]} href={rootPath + "/about"}>
                         About
                     </Link>
@@ -24,14 +28,14 @@ export default function MoreLinks() {
                     >
                         Tutorial
                     </Link>
-                    <span className={style["separator"]}>·</span>
+                    <span className={style["separator"]}></span>
                 </div>
                 <span className={style["copyright"]}>
                     &copy;{" "}
                     <Link target={"_blank"} href={"https://kpverse.in"}>
                         KPVERSE
-                    </Link>
-                    . All Rights Reserved.
+                    </Link>{" "}
+                    - All Rights Reserved.
                 </span>
             </div>
         </div>
