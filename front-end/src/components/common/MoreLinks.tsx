@@ -17,7 +17,7 @@ export default function MoreLinks() {
                     <span className={style["separator"]}>·</span>
                     <Link
                         className={style["link"]}
-                        href={"https://kpverse.in/archgemini/feedback"}
+                        href={rootPath + "/feedback"}
                     >
                         Feedback
                     </Link>

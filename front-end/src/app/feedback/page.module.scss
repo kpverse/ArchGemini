@@ -1,0 +1,13 @@
+.feedback {
+    width: 100vw;
+    height: 100vh;
+
+    padding: 16px;
+
+    .feedback-form {
+        background-color: #efefef;
+        width: 100%;
+        height: calc(100% - 48px);
+        border-radius: 16px;
+    }
+}
