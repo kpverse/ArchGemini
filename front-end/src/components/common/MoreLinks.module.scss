@@ -52,16 +52,21 @@
             .separator {
                 margin: 0 8px;
             }
+
+            margin-right: 16px;
         }
 
         .copyright {
-            font-weight: 500;
+            height: 16px;
 
-            a {
-                font-weight: 600;
-                &:hover {
-                    color: #06f;
-                }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+            svg {
+                aspect-ratio: 1087 / 56;
+                height: 100%;
             }
         }
     }
