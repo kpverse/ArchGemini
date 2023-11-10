@@ -16,13 +16,15 @@ export function defaultShareFolder() {
         );
         process.exit(1);
     } else
-        console.log(`\nDefault shared path is "${chalk.green(SharedFolder)}".`);
+        console.log(
+            `\nDefault shared folder is "${chalk.green(SharedFolder)}".`
+        );
 }
 
 export function setSharedFolder(newPath: string) {
     SharedFolder = newPath;
 
-    console.log(`\nLatest shared folder is "${chalk.green(SharedFolder)}".`);
+    console.log(`\nNow sharing ${chalk.underline.green(SharedFolder)}.`);
 
     return SharedFolder;
 }

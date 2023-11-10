@@ -6,7 +6,6 @@ import { platform } from "process";
 import cors from "cors";
 import { join } from "path";
 import openLink from "open";
-import { table } from "table";
 import chalk from "chalk";
 import { defaultShareFolder } from "./sender/shared-folder";
 import VERSION from "./metadata/VERSION";
@@ -26,12 +25,6 @@ let welcomeMsg = (url: string) => {
     return `
 ${chalk.green.bold("ArchGemini started successfully.")}
 
-${table([
-    [chalk.yellow("Available services"), chalk.yellow("Service URL")],
-    ["ArchGemini Sender", chalk.blue.underline(url + "/sender")],
-    ["ArchGemini Receiver", chalk.blue.underline(url + "/receiver")],
-])}
-
 ${chalk.cyan("- Trying to open")} ${chalk.blue.bold.underline(
         url + "/sender"
     )}${chalk.cyan(".")}
@@ -46,12 +39,10 @@ ${chalk.yellow("Press")} ${chalk.magenta.bold(
         `${platform === "darwin" ? "command" : "control"} + c`
     )} ${chalk.yellow("to close this app.")}
 
-${chalk.green("Thank you for using ArchGemini!")}
-
-${chalk.bold(
-    `Get more tools from KPVERSE only at ${chalk.blue.underline(
+${chalk.green.bold(
+    `Thank you for using ArchGemini! Get more tools from KPVERSE only at ${chalk.blue.bold.underline(
         "https://kpverse.in"
-    )}`
+    )}.`
 )}
 `;
 };
