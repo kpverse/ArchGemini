@@ -18,57 +18,63 @@ ExpressApp.use(cors());
 ExpressApp.use(API.path, API.router);
 
 ExpressApp.use(
-  "/archgemini/",
-  express.static(join(__dirname, "../../front-end/out/"))
+    "/archgemini/",
+    express.static(join(__dirname, "../../front-end/out/"))
 );
 
 let welcomeMsg = (url: string) => {
-  return `
+    return `
 ${chalk.green.bold("ArchGemini started successfully.")}
 
 ${table([
-  [chalk.yellow("Available services"), chalk.yellow("Service URL")],
-  ["ArchGemini Sender", chalk.blue.underline(url + "/sender")],
-  ["ArchGemini Receiver", chalk.blue.underline(url + "/receiver")],
+    [chalk.yellow("Available services"), chalk.yellow("Service URL")],
+    ["ArchGemini Sender", chalk.blue.underline(url + "/sender")],
+    ["ArchGemini Receiver", chalk.blue.underline(url + "/receiver")],
 ])}
 
 ${chalk.cyan("- Trying to open")} ${chalk.blue.bold.underline(
-    url + "/sender"
-  )}${chalk.cyan(".")}
+        url + "/sender"
+    )}${chalk.cyan(".")}
     
 ${chalk.cyan(
-  "- If it does not open automatically, open"
+    "- If it does not open automatically, open"
 )} ${chalk.blue.bold.underline(url + "/sender")} ${chalk.cyan(
-    "in your browser."
-  )}
+        "in your browser."
+    )}
 
 ${chalk.yellow("Press")} ${chalk.magenta.bold(
-    `${platform === "darwin" ? "command" : "control"} + c`
-  )} ${chalk.yellow("to close this app.")}
+        `${platform === "darwin" ? "command" : "control"} + c`
+    )} ${chalk.yellow("to close this app.")}
 
 ${chalk.green("Thank you for using ArchGemini!")}
+
+${chalk.bold(
+    `Get more tools from KPVERSE only at ${chalk.blue.underline(
+        "https://kpverse.in"
+    )}`
+)}
 `;
 };
 
 async function main() {
-  console.log(`\n${chalk.green.bold(`ArchGemini v${VERSION} starting...`)}`);
+    console.log(`\n${chalk.green.bold(`ArchGemini v${VERSION} starting...`)}`);
 
-  let port = await getPortValue(),
-    ip = await getIPv4();
+    let port = await getPortValue(),
+        ip = await getIPv4();
 
-  defaultShareFolder();
+    defaultShareFolder();
 
-  ExpressApp.listen(port, () => {
-    let url = `http://${ip}:${port}/archgemini`;
+    ExpressApp.listen(port, () => {
+        let url = `http://${ip}:${port}/archgemini`;
 
-    console.log(welcomeMsg(url));
+        console.log(welcomeMsg(url));
 
-    try {
-      openLink(url + "/sender");
-    } catch (error) {
-      console.log(error.message);
-    }
-  });
+        try {
+            openLink(url + "/sender");
+        } catch (error) {
+            console.log(error.message);
+        }
+    });
 }
 
 main();

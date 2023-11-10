@@ -1,42 +1,43 @@
 ![](./front-end/public/archgemini-og.jpg)
 
-<h1 align="center">ArchGemini</h1>
+<h1 align="center"><a href="https://kpverse.in/archgemini">ArchGemini</a></h1>
 
-ArchGemini simplifies file sharing over the local network, providing an effortless and secure way to share your files with connected devices.
+ArchGemini **simplifies file sharing over the local network**, providing an effortless and secure way to **share your files with connected devices**.
 
 ## Installation
 
-To install ArchGemini, make sure you have Node.js or any other JavaScript runtime environment is installed on your system, and then run the following command:
+To install ArchGemini, **make sure you have Node.js** or any **other JavaScript runtime environment is installed** on your system. Then run the following command:
 
 ```bash
-# If you want to install it globally in you system. (Recommended)
+# Install globally (Recommended)
 npm i -g archgemini
 
 # or
 
-# If you want to install it in a particular folder
+# Install in a specific folder
 npm i archgemini
 ```
 
 ## Usage
 
-After installation, run the following command in your terminal to share the current working directory via ArchGemini:
+After installation, run the following command in the terminal/command prompt/powershell to share the current working directory over the network using ArchGemini:
 
 ```bash
-# If you have installed it globally.
+# If installed globally.
 archgemini
 
 # or
 
-# If you have installed it in a particular folder.
+# If installed in a specific folder.
 npx archgemini
 ```
 
--   ArchGemini can run on macOS, Windows and Linux distributions as well. The only requirement is that both the sender and receiver divices must be connected to the same network.
+-   ArchGemini is **compatible with macOS, Windows, and Linux** distributions.
+-   Both the sender and receiver **divices must be connected to the same network**.
 
 ## Contributing
 
-We welcome contributions to ArchGemini! Feel free to fork the project, make your improvements, and submit a pull request.
+We welcome contributions to ArchGemini! Feel free to [fork the project](https://github.com/kpverse/ArchGemini/fork), make your improvements, and submit a [pull request](https://github.com/kpverse/ArchGemini/pulls).
 
 ## License
 
@@ -48,4 +49,4 @@ If you have any questions or need assistance, you can reach out to us via email 
 
 ---
 
-<div align="center">ArchGemini from <strong><a href="https://kpverse.in">KPVERSE</a></strong></div>
+<div align="center"><strong><a href="https://kpverse.in">More from KPVERSE</a></strong></div>
