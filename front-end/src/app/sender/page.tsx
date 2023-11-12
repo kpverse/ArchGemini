@@ -4,6 +4,7 @@ import style from "./page.module.scss";
 import Link from "next/link";
 import rootPath from "@/metadata/root-path";
 import MoreLinks from "@/components/common/MoreLinks";
+import ReloadMetadata from "@/components/common/ReloadMetadata";
 
 export const metadata: Metadata = {
     title: "ArchGemini from KPVERSE",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function SenderHome() {
     return (
         <>
+            <ReloadMetadata title={metadata.title as string} />
             <SenderWindow>
                 <Link
                     className={style["change-shared-folder"]}

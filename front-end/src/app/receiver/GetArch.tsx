@@ -1,64 +1,17 @@
-"use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import style from "./GetArch.module.scss";
 import Link from "next/link";
 import ContentTable, { fileInfoType, folderInfoType } from "./ContentTable";
-import productionSettings from "@/metadata/production-settings";
-import rootPath from "@/metadata/root-path";
 
-type responseData = {
-    fld?: folderInfoType[] | undefined;
-    fls?: fileInfoType[] | undefined;
-    pls: string[];
-};
-
-export default function GetArch() {
-    let dummyValue: string[] | fileInfoType[] | folderInfoType[] | undefined;
-
-    let searchParams = useSearchParams(),
-        [fileObject, setFileObject] = useState(dummyValue),
-        [folderObject, setFolderObject] = useState(dummyValue),
-        [pathListObject, setPathListObject] = useState(dummyValue),
-        { replace } = useRouter();
-
-    async function dataFetcher(path: string | null) {
-        try {
-            if (path === null) replace(rootPath + "/receiver?path=/");
-
-            let response = await fetch(
-                    `${
-                        productionSettings.PRODUCTION
-                            ? ""
-                            : productionSettings.BACKEND_SERVER_URL_ORIGIN
-                    }/archgemini/_api/get-arch?path=${path || "/"}`
-                ),
-                data = (await response.json()) as responseData;
-
-            setPathListObject(data.pls);
-            setFileObject(data.fls || dummyValue);
-            setFolderObject(data.fld || dummyValue);
-        } catch {
-            setPathListObject(undefined);
-            setFileObject(undefined);
-            setFolderObject(undefined);
-        }
-    }
-
-    useEffect(() => {
-        dataFetcher(searchParams.get("path"));
-    }, [searchParams]);
-
-    useEffect(() => {
-        if (pathListObject) {
-            if (pathListObject.length > 1)
-                document.title = `${
-                    pathListObject[pathListObject.length - 1]
-                } - ArchGemini`;
-            else document.title = "ArchGemini from KPVERSE";
-        } else document.title = `😬 Oops! Nothing to show - ArchGemini`;
-    }, [pathListObject]);
-
+export default function GetArch({
+    fileObject,
+    folderObject,
+    pathListObject,
+}: {
+    fileObject?: fileInfoType[];
+    folderObject?: folderInfoType[];
+    pathListObject?: string[];
+}) {
     return (
         <>
             {pathListObject ? (

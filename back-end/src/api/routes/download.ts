@@ -4,6 +4,7 @@ import { getPortValue } from "../../sender/port";
 import { join } from "path";
 import { SharedFolder } from "../../sender/shared-folder";
 import { isFile } from "../../helpers/path-type/is-file";
+import { requestFromSender } from "../../sender/request-from-sender";
 
 export const DownloadFile = {
     path: "/download",
@@ -12,6 +13,15 @@ export const DownloadFile = {
 
 DownloadFile.router.get("/file", (req, res) => {
     (async () => {
+        // Logic for checking if the request is coming from sender or not.
+        let { remoteAddress } = req.socket;
+        if (remoteAddress && requestFromSender(remoteAddress)) {
+            res.send({
+                status: "REQUEST_FROM_SENDER",
+            });
+            return;
+        }
+
         let path = new URL(
             `http://localhost:${await getPortValue()}${join(
                 routesPrefix,
@@ -22,7 +32,7 @@ DownloadFile.router.get("/file", (req, res) => {
 
         if (!path) {
             res.send({
-                status: "FILE_NOT_PROVIDED",
+                status: "PATH_NOT_PROVIDED",
             });
             return;
         }

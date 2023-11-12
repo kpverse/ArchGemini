@@ -31,6 +31,12 @@ export default function QrAndWarning() {
                     />
 
                     <span>{receiverUrl}</span>
+
+                    <span className={style["msg"]}>
+                        Devices connected to the same network can scan this QR
+                        code or open the link in browser to access the shared
+                        folder.
+                    </span>
                 </>
             ) : undefined}
 
@@ -54,7 +60,6 @@ export default function QrAndWarning() {
                             );
                         }}
                     >
-                        {/* eslint-disable-next-line react/no-unescaped-entities */}
                         Show QR
                     </button>
                 </>

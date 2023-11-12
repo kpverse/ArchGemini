@@ -6,6 +6,7 @@ import {
 import { getNetworkInterfaces } from "../../helpers/network-interfaces";
 import { selectAvailableIP, usefulInterfaceList } from "./select-available-ip";
 import { table } from "table";
+import { LocalIPv4ListObject } from "./local-ipv4-list";
 
 export async function getAvailableIP() {
     let interfaces = getNetworkInterfaces() as {
@@ -39,6 +40,8 @@ export async function getAvailableIP() {
     }
 
     if (usefulInterfaceList.length === 1) {
+        let interfaceObject = usefulInterfaceList[0];
+
         console.log(
             chalk.yellow(
                 "\n- ArchGemini detected a single network interface and will utilize it as the default network interface."
@@ -52,13 +55,15 @@ export async function getAvailableIP() {
                         chalk.yellow("IP Address"),
                     ],
                     [
-                        chalk.green(usefulInterfaceList[0].name),
-                        chalk.blue(usefulInterfaceList[0].ip),
+                        chalk.green(interfaceObject.name),
+                        chalk.blue(interfaceObject.ip),
                     ],
                 ])
         );
 
-        return usefulInterfaceList[0].ip;
+        LocalIPv4ListObject.value.push(interfaceObject.ip);
+
+        return interfaceObject.ip;
     }
 
     return await selectAvailableIP(usefulInterfaceList);

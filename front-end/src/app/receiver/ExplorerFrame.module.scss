@@ -1,0 +1,36 @@
+.explorer-frame {
+    height: calc(100% - 96px - 16px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .error-msgs {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        border: 1px solid #e0e0e0;
+
+        padding: 16px;
+
+        border-radius: 24px;
+
+        span {
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+        }
+        a {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            margin-top: 16px;
+        }
+    }
+}
