@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getIPv4 } from "../../sender/ip-address/main";
 import { setSharedFolder } from "../../sender/shared-folder";
 import { isDir } from "../../helpers/path-type/is-dir";
 import { join } from "path";
 import bodyParser from "body-parser";
+import { requestFromSender } from "../../sender/request-from-sender";
 
 export const SharePath = {
     path: "/share-path",
@@ -18,12 +18,7 @@ SharePath.router.post("/", (req, res) => {
     (async () => {
         // Logic for checking if the request is coming from sender or not.
         let { remoteAddress } = req.socket;
-        if (
-            remoteAddress &&
-            !["::1", "::ffff:127.0.0.1", `::ffff:${await getIPv4()}`].includes(
-                remoteAddress
-            )
-        ) {
+        if (remoteAddress && !requestFromSender(remoteAddress)) {
             res.send({
                 status: "YOU_DONT_HAVE_PERMISSION_TO_CHANGE",
             });

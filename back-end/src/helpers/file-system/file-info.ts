@@ -19,9 +19,9 @@ export type fileInfoType =
 
 function formatFileSize(bytes: number) {
     if (bytes < 1024) return bytes + ` byte${bytes === 1 ? "" : "s"}`;
-    else if (bytes < 1024 ** 2) return (bytes / 1024).toFixed(1) + " KB";
-    else if (bytes < 1024 ** 3) return (bytes / 1024 ** 2).toFixed(1) + " MB";
-    else return (bytes / 1024 ** 3).toFixed(1) + " GB";
+    else if (bytes < 1024 ** 2) return (bytes / 1024).toFixed(0) + " KB";
+    else if (bytes < 1024 ** 3) return (bytes / 1024 ** 2).toFixed(0) + " MB";
+    else return (bytes / 1024 ** 3).toFixed(0) + " GB";
 }
 
 export function getFileInfo(filePath: PathLike): fileInfoType {

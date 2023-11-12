@@ -1,9 +1,8 @@
 import ReceiverWindow from "@/components/receiver/ReceiverWindow";
 import rootPath from "@/metadata/root-path";
 import { Metadata } from "next";
-import style from "./page.module.scss";
-import GetArch from "./GetArch";
 import MoreLinks from "@/components/common/MoreLinks";
+import ExplorerFrame from "./ExplorerFrame";
 import ReloadMetadata from "@/components/common/ReloadMetadata";
 
 export const metadata: Metadata = {
@@ -14,10 +13,9 @@ export const metadata: Metadata = {
 export default function page() {
     return (
         <>
+            <ReloadMetadata title={metadata.title as string} />
             <ReceiverWindow>
-                <div className={style["explorer-frame"]}>
-                    <GetArch />
-                </div>
+                <ExplorerFrame />
             </ReceiverWindow>
             <MoreLinks />
         </>

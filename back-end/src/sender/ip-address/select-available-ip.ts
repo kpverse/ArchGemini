@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import { createInterface } from "readline";
 import { table } from "table";
+import { LocalIPv4ListObject } from "./local-ipv4-list";
 
 export type usefulInterfaceList = {
     name: string;
@@ -52,6 +53,8 @@ export async function selectAvailableIP(
         else validAnswersString += `, ${indexStr}`;
 
         validAnswers.push(indexStr);
+
+        LocalIPv4ListObject.value.push(ip);
     }
 
     let answer: string = await new Promise(function (resolve) {

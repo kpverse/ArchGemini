@@ -6,6 +6,7 @@ import { routesPrefix } from "../routes-prefix";
 import { getPathData } from "../../helpers/file-system/path-data";
 import { isDir } from "../../helpers/path-type/is-dir";
 import { platform } from "process";
+import { requestFromSender } from "../../sender/request-from-sender";
 
 export const GetArch = {
     path: "/get-arch",
@@ -14,6 +15,15 @@ export const GetArch = {
 
 GetArch.router.get("/", (req, res) => {
     (async () => {
+        // Logic for checking if the request is coming from sender or not.
+        let { remoteAddress } = req.socket;
+        if (remoteAddress && requestFromSender(remoteAddress)) {
+            res.send({
+                status: "REQUEST_FROM_SENDER",
+            });
+            return;
+        }
+
         let path =
                 new URL(
                     `http://localhost:${await getPortValue()}${join(
@@ -36,7 +46,7 @@ GetArch.router.get("/", (req, res) => {
         }
 
         res.send({
-            status: "NOTHING_TO_SHOW",
+            status: "PATH_IS_NOT_FOLDER",
         });
     })();
 });
