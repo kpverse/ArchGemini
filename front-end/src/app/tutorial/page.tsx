@@ -17,7 +17,7 @@ export default function page() {
                 <CommonHeader title="ArchGemini Tutorial" />
                 <iframe
                     className={style["tut-video"]}
-                    src="https://www.youtube.com/embed/4Pa5xasdpiM"
+                    src="https://www.youtube.com/embed/tZGtXsMRpLU"
                     title="YouTube video player"
                     frameBorder={0}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
