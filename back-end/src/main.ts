@@ -40,10 +40,16 @@ ${chalk.yellow("Press")} ${chalk.magenta.bold(
     )} ${chalk.yellow("to close this app.")}
 
 ${chalk.green.bold(
-    `Thank you for using ArchGemini! Get more tools from KPVERSE only at ${chalk.blue.bold.underline(
+    `Thank you for using ArchGemini!
+
+Get more tools from KPVERSE. Visit ${chalk.blue.bold.underline(
         "https://kpverse.in"
     )}.`
 )}
+
+If you encounter any issues, please don't hesitate to report them at "${chalk.blue(
+        "https://github.com/kpverse/archgemini/issues/new"
+    )}". Your feedback is highly appreciated!
 `;
 };
 

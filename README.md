@@ -1,4 +1,4 @@
-![](./front-end/public/archgemini-og.jpg)
+[![](./front-end/public/archgemini-og.jpg)](https://kpverse.in/archgemini "ArchGemini from KPVERSE")
 
 <h1 align="center"><a href="https://kpverse.in/archgemini">ArchGemini</a></h1>
 
@@ -8,15 +8,28 @@ ArchGemini **simplifies file sharing over the local network**, providing an effo
 
 To install ArchGemini, **make sure you have Node.js** or any **other JavaScript runtime environment is installed** on your system. Then run the following command:
 
+-   Option 1
+
 ```bash
 # Install globally (Recommended)
-npm i -g archgemini
+npm install -g archgemini
 
-# or
-
-# Install in a specific folder
-npm i archgemini
+# If you are installing it on macOS and Linux systems, you might need to use sudo
+sudo npm install -g archgemini
 ```
+
+-   Option 2
+
+```bash
+# Install locally in a specific project folder
+# Navigate to your project directory
+cd your_project_directory
+
+# Install archgemini locally
+npm install archgemini
+```
+
+-   You can visit [our website](https://kpverse.in/archgemini) for easy download option.
 
 ## Usage
 
@@ -35,6 +48,10 @@ npx archgemini
 -   ArchGemini is **compatible with macOS, Windows, and Linux** distributions.
 -   Both the sender and receiver **divices must be connected to the same network**.
 
+## Support and Issue Reporting
+
+If you need assistance or want to report any issues, please visit [issues tab](https://github.com/kpverse/archgemini/issues) of our GitHub repository.
+
 ## Contributing
 
 We welcome contributions to ArchGemini! Feel free to [fork the project](https://github.com/kpverse/ArchGemini/fork), make your improvements, and submit a [pull request](https://github.com/kpverse/ArchGemini/pulls).
@@ -49,4 +66,4 @@ If you have any questions or need assistance, you can reach out to us via email 
 
 ---
 
-<div align="center"><strong><a href="https://kpverse.in">More from KPVERSE</a></strong></div>
+<div align="center"><strong><a href="https://kpverse.in">Get more from KPVERSE</a></strong></div>
