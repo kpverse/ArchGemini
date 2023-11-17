@@ -1,25 +1,23 @@
-export default [
-    process.env.reason === "bundling" && {
-        input: "./build/main.js",
-        output: {
-            file: "./bin/index.esm.js",
-            format: "esm",
-            banner: "#!/usr/bin/env node",
-        },
-        external: [
-            "os",
-            "process",
-            "path",
-            "fs",
-            "readline",
-            //
-            "body-parser",
-            "chalk",
-            "cors",
-            "detect-port",
-            "express",
-            "open",
-            "table",
-        ],
+export default {
+    input: "./build/main.js",
+    output: {
+        file: "./bin/index.esm.js",
+        format: "esm",
+        banner: "#!/usr/bin/env node",
     },
-].filter(Boolean);
+    external: [
+        "os",
+        "process",
+        "path",
+        "fs",
+        "readline",
+        //
+        "body-parser",
+        "chalk",
+        "cors",
+        "detect-port",
+        "express",
+        "open",
+        "table",
+    ],
+};
