@@ -35,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
-# macOS specific ".DS_Store" file
+# macOS ".DS_Store" file
 **/.DS_Store

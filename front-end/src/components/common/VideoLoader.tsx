@@ -23,7 +23,7 @@ export default function VideoLoader({ className }: { className: string }) {
             {hasLoadedBefore === true ? (
                 <video
                     className={className}
-                    src={rootPath + "/archgemini-from-kpverse.webm"}
+                    src={rootPath + "/archgemini-from-kpverse.mp4"}
                     poster={rootPath + "/archgemini-poster.jpg"}
                     autoPlay
                     muted

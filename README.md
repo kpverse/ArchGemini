@@ -6,22 +6,21 @@ ArchGemini **simplifies file sharing over the local network**, providing an effo
 
 ## Installation
 
-To install ArchGemini, **make sure you have Node.js** or any **other JavaScript runtime environment is installed** on your system. Then run the following command:
+To install ArchGemini, **make sure you have Node.js installed** on your system. Then run the following command:
 
--   Option 1
+-   Option 1 - To **install globally** in your system **(Recommended)**
 
 ```bash
-# Install globally (Recommended)
+# Install globally
 npm install -g archgemini
 
 # If you are installing it on macOS and Linux systems, you might need to use sudo
 sudo npm install -g archgemini
 ```
 
--   Option 2
+-   Option 2 - To **install locally** in a specific project folder
 
 ```bash
-# Install locally in a specific project folder
 # Navigate to your project directory
 cd your_project_directory
 
@@ -29,7 +28,7 @@ cd your_project_directory
 npm install archgemini
 ```
 
--   You can visit [our website](https://kpverse.in/archgemini) for easy download option.
+-   Alternatively, you can visit [our website](https://kpverse.in/archgemini) for easy download option.
 
 ## Usage
 
@@ -46,7 +45,7 @@ npx archgemini
 ```
 
 -   ArchGemini is **compatible with macOS, Windows, and Linux** distributions.
--   Both the sender and receiver **divices must be connected to the same network**.
+-   Both the sender and receiver **devices must be connected to the same network**.
 
 ## Support and Issue Reporting
 
