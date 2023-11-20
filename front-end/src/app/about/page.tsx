@@ -16,7 +16,7 @@ export default function page() {
         <>
             <ReloadMetadata title={metadata.title as string} />
             <div className={style["about"]}>
-                <CommonHeader title="Version 0.1.1" />
+                <CommonHeader title="Version 0.1.2" />
 
                 <img
                     className={style["kp-img"]}
