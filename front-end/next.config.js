@@ -1,11 +1,7 @@
 const productionSettings = require("./src/metadata/production-settings.js");
 
 console.log(
-    `\n${
-        productionSettings.PRODUCTION
-            ? "In production mode"
-            : "Not in production mode"
-    }`
+    `${productionSettings.PRODUCTION ? "In" : "Not in"} production mode.\n`
 );
 
 /** @type {import('next').NextConfig} */
