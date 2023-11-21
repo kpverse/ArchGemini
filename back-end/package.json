@@ -16,7 +16,7 @@
   "author": "Kartavya Patel <thekpverse@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@swc/cli": "^0.1.62",
+    "@swc/cli": "^0.1.72",
     "@swc/core": "^1.3.94",
     "@types/cors": "^2.8.15",
     "@types/detect-port": "^1.3.4",

@@ -1,6 +1,6 @@
 {
   "name": "archgemini",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "ArchGemini simplifies file sharing over the local network, providing an effortless and secure way to share your files with connected devices.",
   "main": "back-end/bin/index.cjs.js",
   "type": "commonjs",
