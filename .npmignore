@@ -1,2 +1,9 @@
-!front-end/out/
-!back-end/bin/index.cjs.js
+# Exclude all the files and folders.
+*
+
+# Only include necessary files and folders.
+!/back-end/bin/index.cjs.js
+!/front-end/out/
+!/LICENSE
+!/package.json
+!/README.md
