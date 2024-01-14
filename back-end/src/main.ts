@@ -9,12 +9,13 @@ import openLink from "open";
 import chalk from "chalk";
 import { defaultShareFolder } from "./sender/shared-folder";
 import VERSION from "./metadata/VERSION";
+import mountRoutes from "./helpers/mount-routes";
 
 const ExpressApp = express();
 
 ExpressApp.use(cors());
 
-ExpressApp.use(API.path, API.router);
+mountRoutes(ExpressApp, API);
 
 ExpressApp.use(
     "/archgemini/",
